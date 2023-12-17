@@ -62,7 +62,7 @@ public class SessaoBuilder {
     }
 
     public Sessao build() {
-        return new Sessao(this);
+        return new Sessao(horario, data, sala, filme, tipoDia, assentosOcupados);
     }
 
     public LocalTime horario() {

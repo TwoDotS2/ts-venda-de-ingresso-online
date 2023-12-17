@@ -41,7 +41,7 @@ public class ClienteBuilder {
 
 
     public Cliente build() {
-        return new Cliente(this);
+        return new Cliente(categoria, dataNascimento, nomeCompleto, CPF, endereco);
     }
 
     public CategoriaCliente categoria() {

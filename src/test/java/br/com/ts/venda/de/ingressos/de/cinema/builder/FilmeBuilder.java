@@ -40,7 +40,7 @@ public class FilmeBuilder {
     }
 
     public Filme build() {
-        return new Filme(this);
+        return new Filme(nome, faixaEtaria, descricao, categoria, duracaoEmMinutos);
     }
 
     public String nome() {

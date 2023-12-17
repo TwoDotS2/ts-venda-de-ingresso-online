@@ -35,7 +35,7 @@ public class IngressoBuilder {
     }
 
     public Ingresso build() {
-        return new Ingresso(this);
+        return new Ingresso(sessao, cliente, preco, codigoAssento);
     }
 
     public Sessao sessao() {

@@ -54,7 +54,8 @@ public class SalaBuilder {
     }
 
     public Sala build() {
-        return new Sala(this);
+    return new Sala(numeroSala, tipoSala, quantidadeFileiras, quantidadeColunas,
+            assentos, assentosIndisponiveis, assentosDBOX);
     }
 
     public Integer numeroSala() {
