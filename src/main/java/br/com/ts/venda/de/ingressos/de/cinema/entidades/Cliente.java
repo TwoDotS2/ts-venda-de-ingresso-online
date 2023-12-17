@@ -1,22 +1,31 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
+import br.com.ts.venda.de.ingressos.de.cinema.builder.ClienteBuilder;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 
 import java.time.LocalDate;
 
 public class Cliente {
-    private CategoriaCliente categoriaCliente;
+    private CategoriaCliente categoria;
     private LocalDate dataNascimento;
     private String nomeCompleto;
     private String CPF;
     private String endereco;
 
-    public CategoriaCliente getCategoriaCliente() {
-        return categoriaCliente;
+    public Cliente(ClienteBuilder builder) {
+        this.categoria = builder.categoria();
+        this.dataNascimento = builder.dataNascimento();
+        this.nomeCompleto = builder.nomeCompleto();
+        this.CPF = builder.CPF();
+        this.endereco = builder.endereco();
     }
 
-    public void setCategoriaCliente(CategoriaCliente categoriaCliente) {
-        this.categoriaCliente = categoriaCliente;
+    public CategoriaCliente getCategoriaCliente() {
+        return categoria;
+    }
+
+    public void setCategoriaCliente(CategoriaCliente categoria) {
+        this.categoria = categoria;
     }
 
     public LocalDate getDataNascimento() {

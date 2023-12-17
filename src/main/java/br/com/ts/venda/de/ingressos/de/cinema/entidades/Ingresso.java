@@ -1,11 +1,19 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
+import br.com.ts.venda.de.ingressos.de.cinema.builder.IngressoBuilder;
+
 public class Ingresso {
     private Sessao sessao;
     private Cliente cliente;
     private float preco;
     private String codigoAssento;
 
+    public Ingresso(IngressoBuilder builder) {
+        this.sessao = builder.sessao();
+        this.cliente = builder.cliente();
+        this.preco = builder.preco();
+        this.codigoAssento = builder.codigoAssento();
+    }
 
     public Sessao getSessao() {
         return sessao;

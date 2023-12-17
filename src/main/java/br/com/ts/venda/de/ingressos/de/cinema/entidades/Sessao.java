@@ -1,5 +1,6 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
+import br.com.ts.venda.de.ingressos.de.cinema.builder.SessaoBuilder;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
 
 import java.time.LocalDate;
@@ -13,6 +14,15 @@ public class Sessao {
     private Filme filme;
     private TipoDia tipoDia;
     private Map<String, Cliente> assentosOcupados;
+
+    public Sessao(SessaoBuilder builder) {
+        this.horario = builder.horario();
+        this.data = builder.data();
+        this.sala = builder.sala();
+        this.filme = builder.filme();
+        this.tipoDia = builder.tipoDia();
+        this.assentosOcupados = builder.assentosOcupados();
+    }
 
     public LocalTime getHorario() {
         return horario;
