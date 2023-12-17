@@ -1,6 +1,5 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
-import br.com.ts.venda.de.ingressos.de.cinema.builder.SalaBuilder;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 
 import java.util.List;
@@ -14,14 +13,15 @@ public class Sala {
     private List<String> assentosIndisponiveis;
     private List<String> assentosDBOX;
 
-    public Sala(SalaBuilder builder) {
-        this.numeroSala = builder.numeroSala();
-        this.tipoSala = builder.tipoSala();
-        this.quantidadeFileiras = builder.quantidadeFileiras();
-        this.quantidadeColunas = builder.quantidadeColunas();
-        this.assentos = builder.assentos();
-        this.assentosIndisponiveis = builder.assentosIndisponiveis();
-        this.assentosDBOX = builder.assentosDBOX();
+    public Sala(Integer numeroSala, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,
+                List<String> assentos, List<String> assentosIndisponiveis, List<String> assentosDBOX) {
+        this.numeroSala = numeroSala;
+        this.tipoSala = tipoSala;
+        this.quantidadeFileiras = quantidadeFileiras;
+        this.quantidadeColunas = quantidadeColunas;
+        this.assentos = assentos;
+        this.assentosIndisponiveis = assentosIndisponiveis;
+        this.assentosDBOX = assentosDBOX;
     }
 
     public Integer getNumeroSala() {

@@ -1,6 +1,5 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
-import br.com.ts.venda.de.ingressos.de.cinema.builder.FilmeBuilder;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaFilme;
 
 public class Filme {
@@ -10,14 +9,13 @@ public class Filme {
     private CategoriaFilme categoria;
     private Integer duracaoEmMinutos;
 
-    public Filme(FilmeBuilder builder) {
-        this.nome = builder.nome();
-        this.faixaEtaria = builder.faixaEtaria();
-        this.descricao = builder.descricao();
-        this.categoria = builder.categoria();
-        this.duracaoEmMinutos = builder.duracaoEmMinutos();
+    public Filme(String nome, Integer faixaEtaria, String descricao, CategoriaFilme categoria, Integer duracaoEmMinutos) {
+        this.nome = nome;
+        this.faixaEtaria = faixaEtaria;
+        this.descricao = descricao;
+        this.categoria = categoria;
+        this.duracaoEmMinutos = duracaoEmMinutos;
     }
-
 
     public String getName() {
         return nome;

@@ -1,6 +1,5 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
-import br.com.ts.venda.de.ingressos.de.cinema.builder.ClienteBuilder;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 
 import java.time.LocalDate;
@@ -12,12 +11,12 @@ public class Cliente {
     private String CPF;
     private String endereco;
 
-    public Cliente(ClienteBuilder builder) {
-        this.categoria = builder.categoria();
-        this.dataNascimento = builder.dataNascimento();
-        this.nomeCompleto = builder.nomeCompleto();
-        this.CPF = builder.CPF();
-        this.endereco = builder.endereco();
+    public Cliente(CategoriaCliente categoria, LocalDate dataNascimento, String nomeCompleto, String CPF, String endereco) {
+        this.categoria = categoria;
+        this.dataNascimento = dataNascimento;
+        this.nomeCompleto = nomeCompleto;
+        this.CPF = CPF;
+        this.endereco = endereco;
     }
 
     public CategoriaCliente getCategoriaCliente() {
