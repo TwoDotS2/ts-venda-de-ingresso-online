@@ -8,7 +8,6 @@ public enum TipoDia {
     SEXTA,
     SABADO,
     DOMINGO,
-    EMENDA,
     FERIADO,
     PRE_ESTREIA
 }
