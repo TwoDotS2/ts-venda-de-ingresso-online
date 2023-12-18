@@ -5,31 +5,29 @@ import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 import java.util.List;
 
 public class Sala {
-    private Integer numeroSala;
+    private Integer numero;
     private TipoSala tipoSala;
     private Integer quantidadeFileiras;
     private Integer quantidadeColunas;
     private List<String> assentos;
-    private List<String> assentosIndisponiveis;
-    private List<String> assentosDBOX;
+    private List<Integer> assentosDBOX;
 
-    public Sala(Integer numeroSala, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,
-                List<String> assentos, List<String> assentosIndisponiveis, List<String> assentosDBOX) {
-        this.numeroSala = numeroSala;
+    public Sala(Integer numero, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,
+                List<String> assentos, List<Integer> assentosDBOX) {
+        this.numero = numero;
         this.tipoSala = tipoSala;
         this.quantidadeFileiras = quantidadeFileiras;
         this.quantidadeColunas = quantidadeColunas;
         this.assentos = assentos;
-        this.assentosIndisponiveis = assentosIndisponiveis;
         this.assentosDBOX = assentosDBOX;
     }
 
-    public Integer getNumeroSala() {
-        return numeroSala;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setNumeroSala(Integer numeroSala) {
-        this.numeroSala = numeroSala;
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
     public TipoSala getTipoSala() {
@@ -64,19 +62,11 @@ public class Sala {
         this.assentos = assentos;
     }
 
-    public List<String> getAssentosIndisponiveis() {
-        return assentosIndisponiveis;
-    }
-
-    public void setAssentosIndisponiveis(List<String> assentosIndisponiveis) {
-        this.assentosIndisponiveis = assentosIndisponiveis;
-    }
-
-    public List<String> getAssentosDBOX() {
+    public List<Integer> getAssentosDBOX() {
         return assentosDBOX;
     }
 
-    public void setAssentosDBOX(List<String> assentosDBOX) {
+    public void setAssentosDBOX(List<Integer> assentosDBOX) {
         this.assentosDBOX = assentosDBOX;
     }
 

@@ -11,8 +11,7 @@ public class SalaBuilder {
     private Integer quantidadeFileiras;
     private Integer quantidadeColunas;
     private List<String> assentos;
-    private List<String> assentosIndisponiveis;
-    private List<String> assentosDBOX;
+    private List<Integer> assentosDBOX;
 
     public static SalaBuilder umaSala() {
         return new SalaBuilder();
@@ -43,19 +42,14 @@ public class SalaBuilder {
         return this;
     }
 
-    public SalaBuilder comAssentosIndisponiveis(List<String> assentosIndisponiveis) {
-        this.assentosIndisponiveis = assentosIndisponiveis;
-        return this;
-    }
-
-    public SalaBuilder comAssentosDBOX(List<String> assentosDBOX) {
+    public SalaBuilder comAssentosDBOX(List<Integer> assentosDBOX) {
         this.assentosDBOX = assentosDBOX;
         return this;
     }
 
     public Sala build() {
     return new Sala(numeroSala, tipoSala, quantidadeFileiras, quantidadeColunas,
-            assentos, assentosIndisponiveis, assentosDBOX);
+            assentos, assentosDBOX);
     }
 
     public Integer numeroSala() {
@@ -78,11 +72,7 @@ public class SalaBuilder {
         return assentos;
     }
 
-    public List<String> assentosIndisponiveis() {
-        return assentosIndisponiveis;
-    }
-
-    public List<String> assentosDBOX() {
+    public List<Integer> assentosDBOX() {
         return assentosDBOX;
     }
 }
