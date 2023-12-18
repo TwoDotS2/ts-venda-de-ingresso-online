@@ -13,6 +13,17 @@ public class Sala {
     private List<String> assentosIndisponiveis;
     private List<String> assentosDBOX;
 
+    public Sala(Integer numeroSala, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,
+                List<String> assentos, List<String> assentosIndisponiveis, List<String> assentosDBOX) {
+        this.numeroSala = numeroSala;
+        this.tipoSala = tipoSala;
+        this.quantidadeFileiras = quantidadeFileiras;
+        this.quantidadeColunas = quantidadeColunas;
+        this.assentos = assentos;
+        this.assentosIndisponiveis = assentosIndisponiveis;
+        this.assentosDBOX = assentosDBOX;
+    }
+
     public Integer getNumeroSala() {
         return numeroSala;
     }
@@ -68,4 +79,5 @@ public class Sala {
     public void setAssentosDBOX(List<String> assentosDBOX) {
         this.assentosDBOX = assentosDBOX;
     }
+
 }

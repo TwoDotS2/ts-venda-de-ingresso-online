@@ -6,6 +6,12 @@ public class Ingresso {
     private float preco;
     private String codigoAssento;
 
+    public Ingresso(Sessao sessao, Cliente cliente, float preco, String codigoAssento) {
+        this.sessao = sessao;
+        this.cliente = cliente;
+        this.preco = preco;
+        this.codigoAssento = codigoAssento;
+    }
 
     public Sessao getSessao() {
         return sessao;

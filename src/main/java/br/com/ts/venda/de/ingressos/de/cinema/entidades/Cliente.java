@@ -5,18 +5,26 @@ import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 import java.time.LocalDate;
 
 public class Cliente {
-    private CategoriaCliente categoriaCliente;
+    private CategoriaCliente categoria;
     private LocalDate dataNascimento;
     private String nomeCompleto;
     private String CPF;
     private String endereco;
 
-    public CategoriaCliente getCategoriaCliente() {
-        return categoriaCliente;
+    public Cliente(CategoriaCliente categoria, LocalDate dataNascimento, String nomeCompleto, String CPF, String endereco) {
+        this.categoria = categoria;
+        this.dataNascimento = dataNascimento;
+        this.nomeCompleto = nomeCompleto;
+        this.CPF = CPF;
+        this.endereco = endereco;
     }
 
-    public void setCategoriaCliente(CategoriaCliente categoriaCliente) {
-        this.categoriaCliente = categoriaCliente;
+    public CategoriaCliente getCategoriaCliente() {
+        return categoria;
+    }
+
+    public void setCategoriaCliente(CategoriaCliente categoria) {
+        this.categoria = categoria;
     }
 
     public LocalDate getDataNascimento() {
