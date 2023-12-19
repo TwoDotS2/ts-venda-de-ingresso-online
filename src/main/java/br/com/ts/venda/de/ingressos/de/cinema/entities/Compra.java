@@ -1,4 +1,4 @@
-package br.com.ts.venda.de.ingressos.de.cinema.entidades;
+package br.com.ts.venda.de.ingressos.de.cinema.entities;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.Preco;

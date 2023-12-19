@@ -1,6 +1,6 @@
 package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
-import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala;
+import br.com.ts.venda.de.ingressos.de.cinema.entities.Sala;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 
 import java.util.List;

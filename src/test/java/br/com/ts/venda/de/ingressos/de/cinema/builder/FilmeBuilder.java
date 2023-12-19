@@ -1,6 +1,6 @@
 package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
-import br.com.ts.venda.de.ingressos.de.cinema.entidades.Filme;
+import br.com.ts.venda.de.ingressos.de.cinema.entities.Filme;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaFilme;
 
 public class FilmeBuilder {

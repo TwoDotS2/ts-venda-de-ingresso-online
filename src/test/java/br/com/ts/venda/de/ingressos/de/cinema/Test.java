@@ -1,7 +1,7 @@
 package br.com.ts.venda.de.ingressos.de.cinema;
 
 import br.com.ts.venda.de.ingressos.de.cinema.builder.*;
-import br.com.ts.venda.de.ingressos.de.cinema.entidades.Ingresso;
+import br.com.ts.venda.de.ingressos.de.cinema.entities.Ingresso;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.ClassificacaoIndicativa;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;

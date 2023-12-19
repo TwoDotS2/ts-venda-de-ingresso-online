@@ -1,6 +1,6 @@
 package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
-import br.com.ts.venda.de.ingressos.de.cinema.entidades.*;
+import br.com.ts.venda.de.ingressos.de.cinema.entities.*;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
 
 import java.time.LocalDate;
