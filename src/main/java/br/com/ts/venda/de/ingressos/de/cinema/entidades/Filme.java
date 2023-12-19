@@ -4,7 +4,7 @@ import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaFilme;
 
 public class Filme {
     private String nome;
-    private Integer faixaEtaria;
+    private long faixaEtaria;
     private String descricao;
     private CategoriaFilme categoria;
     private Integer duracaoEmMinutos;
@@ -25,11 +25,11 @@ public class Filme {
         this.nome = nome;
     }
 
-    public Integer getFaixaEtaria() {
+    public long getFaixaEtaria() {
         return faixaEtaria;
     }
 
-    public void setFaixaEtaria(Integer faixaEtaria) {
+    public void setFaixaEtaria(long faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
     }
 

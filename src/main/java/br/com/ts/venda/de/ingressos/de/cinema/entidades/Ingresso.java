@@ -1,47 +1,23 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
+import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Ingresso {
-    private Sessao sessao;
-    private Cliente cliente;
-    private float preco;
+    private long numeroSala;
+    private CategoriaCliente categoriaCliente;
     private String codigoAssento;
+    private LocalDate diaSessao;
+    private LocalTime horarioSessao;
 
-    public Ingresso(Sessao sessao, Cliente cliente, float preco, String codigoAssento) {
-        this.sessao = sessao;
-        this.cliente = cliente;
-        this.preco = preco;
+    public Ingresso(long numeroSala, CategoriaCliente categoriaCliente, String codigoAssento, LocalDate diaSessao, LocalTime horarioSessao) {
+        this.numeroSala = numeroSala;
+        this.categoriaCliente = categoriaCliente;
         this.codigoAssento = codigoAssento;
-    }
-
-    public Sessao getSessao() {
-        return sessao;
-    }
-
-    public void setSessao(Sessao sessao) {
-        this.sessao = sessao;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
-    }
-
-    public String getCodigoAssento() {
-        return codigoAssento;
-    }
-
-    public void setCodigoAssento(String codigoAssento) {
-        this.codigoAssento = codigoAssento;
+        this.diaSessao = diaSessao;
+        this.horarioSessao = horarioSessao;
     }
 }
+

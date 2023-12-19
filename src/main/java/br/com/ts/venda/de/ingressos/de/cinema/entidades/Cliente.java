@@ -3,6 +3,9 @@ package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+
+import static java.time.temporal.ChronoUnit.YEARS;
 
 public class Cliente {
     private CategoriaCliente categoria;
@@ -19,7 +22,7 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public CategoriaCliente getCategoriaCliente() {
+    public CategoriaCliente getCategoria() {
         return categoria;
     }
 
@@ -57,5 +60,9 @@ public class Cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public long calcularIdade(){
+        return YEARS.between(LocalTime.now(), dataNascimento);
     }
 }

@@ -2,6 +2,7 @@ package br.com.ts.venda.de.ingressos.de.cinema;
 
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,5 +25,8 @@ public class Main {
         System.out.println(sala.assentoEhDBOX("C1"));
         System.out.println(sala.assentoEhDBOX("A23"));
 
+
+        long value = (LocalDate.now().toEpochDay() - LocalDate.of(2002, 9, 9).toEpochDay())/365;
+        System.out.println(value);
     }
 }
