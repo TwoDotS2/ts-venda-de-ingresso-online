@@ -1,28 +1,28 @@
 package br.com.ts.venda.de.ingressos.de.cinema;
 
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala.gerarAssentos;
+
 public class Main {
     public static void main(String[] args) {
-        List<String> names = new ArrayList<>();
+        Sala sala = new Sala();
+        sala.setAssentos(gerarAssentos(3, 3));
 
-        names.add("A1");
-        names.add("B1");
-        names.add("C1");
-        names.add("C2");
-        names.add("A3");
-        names.add("B2");
+        List<String> DBOX = new ArrayList<String>();
 
-        Comparator<String> cmp = Comparator.naturalOrder();
-        Collections.sort(names, cmp);
+        DBOX.add("A");
+        DBOX.add("B");
+        sala.setFileirasAssentosDBOX(DBOX);
 
-        for(String name: names){
-            System.out.println(name);
-        }
-        System.out.println(LocalTime.now().plusHours(2));
+        System.out.println(sala.assentoEhDBOX("C1"));
+        System.out.println(sala.assentoEhDBOX("A23"));
+
     }
 }
