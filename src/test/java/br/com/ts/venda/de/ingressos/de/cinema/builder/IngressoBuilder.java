@@ -5,10 +5,10 @@ import br.com.ts.venda.de.ingressos.de.cinema.entidades.Ingresso;
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sessao;
 
 public class IngressoBuilder {
-    private Sessao sessao;
-    private Cliente cliente;
-    private float preco;
-    private String codigoAssento;
+    private Sessao sessao = new SessaoBuilder().build();
+    private Cliente cliente = new ClienteBuilder().build();
+    private float preco = 100;
+    private String codigoAssento = "A1";
 
     public static IngressoBuilder umIngresso() {
         return new IngressoBuilder();
@@ -36,21 +36,5 @@ public class IngressoBuilder {
 
     public Ingresso build() {
         return new Ingresso(sessao, cliente, preco, codigoAssento);
-    }
-
-    public Sessao sessao() {
-        return sessao;
-    }
-
-    public Cliente cliente() {
-        return cliente;
-    }
-
-    public float preco() {
-        return preco;
-    }
-
-    public String codigoAssento() {
-        return codigoAssento;
     }
 }

@@ -2,13 +2,14 @@ package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.Filme;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaFilme;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.ClassificacaoIndicativa;
 
 public class FilmeBuilder {
-    private String nome;
-    private Integer faixaEtaria;
-    private String descricao;
-    private CategoriaFilme categoria;
-    private Integer duracaoEmMinutos;
+    private String nome = "Toy Story";
+    private ClassificacaoIndicativa faixaEtaria = ClassificacaoIndicativa.LIVRE;
+    private String descricao = "Brinquedos vivem";
+    private CategoriaFilme categoria = CategoriaFilme.ANIMACAO;
+    private Integer duracaoEmMinutos = 77;
 
     public static FilmeBuilder umFilme() {
         return new FilmeBuilder();
@@ -19,7 +20,7 @@ public class FilmeBuilder {
         return this;
     }
 
-    public FilmeBuilder comFaixaEtaria(Integer faixaEtaria) {
+    public FilmeBuilder comFaixaEtaria(ClassificacaoIndicativa faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
         return this;
     }
@@ -41,25 +42,5 @@ public class FilmeBuilder {
 
     public Filme build() {
         return new Filme(nome, faixaEtaria, descricao, categoria, duracaoEmMinutos);
-    }
-
-    public String nome() {
-        return nome;
-    }
-
-    public Integer faixaEtaria() {
-        return faixaEtaria;
-    }
-
-    public String descricao() {
-        return descricao;
-    }
-
-    public CategoriaFilme categoria() {
-        return categoria;
-    }
-
-    public Integer duracaoEmMinutos() {
-        return duracaoEmMinutos;
     }
 }

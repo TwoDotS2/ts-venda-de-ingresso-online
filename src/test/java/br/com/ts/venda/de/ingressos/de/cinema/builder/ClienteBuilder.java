@@ -2,15 +2,20 @@ package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.Cliente;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoBeneficio;
 
 import java.time.LocalDate;
+import java.util.AbstractMap;
+import java.util.Map;
 
 public class ClienteBuilder {
-    private CategoriaCliente categoria;
-    private LocalDate dataNascimento;
-    private String nomeCompleto;
-    private String CPF;
-    private String endereco;
+    private CategoriaCliente categoria = CategoriaCliente.VISITANTE;
+    private LocalDate dataNascimento = LocalDate.of(2000, 2, 2);
+    private String nomeCompleto = "Fulano da Silva";
+    private String CPF = "00000000000";
+    private String endereco = "Avenida Salgado Filho";
+
+    public Map.Entry<TipoBeneficio, Integer> beneficio = new AbstractMap.SimpleEntry<>(TipoBeneficio.NENHUM, 0);
 
     public static ClienteBuilder umCliente(){ return new ClienteBuilder(); }
 
@@ -18,6 +23,11 @@ public class ClienteBuilder {
         this.categoria = categoria;
         return this;
     }
+    public ClienteBuilder comEstudante(){
+        this.categoria = CategoriaCliente.ESTUDANTE;
+        return this;
+    }
+
 
     public ClienteBuilder comDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
@@ -39,28 +49,18 @@ public class ClienteBuilder {
         return this;
     }
 
+    public ClienteBuilder comBeneficioNormal(Integer usosDisponiveis){
+        beneficio = new AbstractMap.SimpleEntry<>(TipoBeneficio.NORMAL, usosDisponiveis);
+        return this;
+    }
+
+    public ClienteBuilder comBeneficioBlack(Integer usosDisponiveis){
+        beneficio = new AbstractMap.SimpleEntry<>(TipoBeneficio.BLACK, usosDisponiveis);
+        return this;
+    }
+
 
     public Cliente build() {
-        return new Cliente(categoria, dataNascimento, nomeCompleto, CPF, endereco);
-    }
-
-    public CategoriaCliente categoria() {
-        return categoria;
-    }
-
-    public LocalDate dataNascimento() {
-        return dataNascimento;
-    }
-
-    public String nomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public String CPF() {
-        return CPF;
-    }
-
-    public String endereco() {
-        return endereco;
+        return new Cliente(categoria, dataNascimento, nomeCompleto, CPF, endereco, beneficio);
     }
 }

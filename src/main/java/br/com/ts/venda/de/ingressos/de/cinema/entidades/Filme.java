@@ -1,15 +1,16 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaFilme;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.ClassificacaoIndicativa;
 
 public class Filme {
     private String nome;
-    private Integer faixaEtaria;
+    private ClassificacaoIndicativa faixaEtaria;
     private String descricao;
     private CategoriaFilme categoria;
     private Integer duracaoEmMinutos;
 
-    public Filme(String nome, Integer faixaEtaria, String descricao, CategoriaFilme categoria, Integer duracaoEmMinutos) {
+    public Filme(String nome, ClassificacaoIndicativa faixaEtaria, String descricao, CategoriaFilme categoria, Integer duracaoEmMinutos) {
         this.nome = nome;
         this.faixaEtaria = faixaEtaria;
         this.descricao = descricao;
@@ -25,11 +26,11 @@ public class Filme {
         this.nome = nome;
     }
 
-    public Integer getFaixaEtaria() {
+    public ClassificacaoIndicativa getFaixaEtaria() {
         return faixaEtaria;
     }
 
-    public void setFaixaEtaria(Integer faixaEtaria) {
+    public void setFaixaEtaria(ClassificacaoIndicativa faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
     }
 

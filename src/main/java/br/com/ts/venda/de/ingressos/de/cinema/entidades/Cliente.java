@@ -1,8 +1,10 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoBeneficio;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class Cliente {
     private CategoriaCliente categoria;
@@ -10,13 +12,15 @@ public class Cliente {
     private String nomeCompleto;
     private String CPF;
     private String endereco;
+    public Map.Entry<TipoBeneficio, Integer> beneficio;
 
-    public Cliente(CategoriaCliente categoria, LocalDate dataNascimento, String nomeCompleto, String CPF, String endereco) {
+    public Cliente(CategoriaCliente categoria, LocalDate dataNascimento, String nomeCompleto, String CPF, String endereco, Map.Entry<TipoBeneficio,Integer> beneficio) {
         this.categoria = categoria;
         this.dataNascimento = dataNascimento;
         this.nomeCompleto = nomeCompleto;
         this.CPF = CPF;
         this.endereco = endereco;
+        this.beneficio = beneficio;
     }
 
     public CategoriaCliente getCategoriaCliente() {
@@ -58,4 +62,20 @@ public class Cliente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public Map.Entry<TipoBeneficio, Integer> getBeneficio() {
+        return beneficio;
+    }
+
+    public void setBeneficio(Map.Entry<TipoBeneficio, Integer> beneficio) {
+        this.beneficio = beneficio;
+    }
+
+    public void decrementaBeneficio(){
+        if(beneficio.getValue()>0){
+            beneficio.setValue(beneficio.getValue()-1);
+        }
+    }
+
+
 }
