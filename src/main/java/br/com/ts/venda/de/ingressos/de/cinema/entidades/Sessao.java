@@ -23,6 +23,10 @@ public class Sessao {
         this.assentosOcupados = assentosOcupados;
     }
 
+    public Boolean assentoEstaDisponivel(String assento){
+        return assentosOcupados.containsKey(assento);
+    }
+
     public LocalTime getHorario() {
         return horario;
     }
