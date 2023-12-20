@@ -3,7 +3,6 @@ package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Sala {
@@ -46,52 +45,24 @@ public class Sala {
         return fileirasAssentosDBOX.contains(fileira);
     }
 
-    public Integer getNumero() {
+    public Integer numero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public TipoSala getTipoSala() {
+    public TipoSala tipoSala() {
         return tipoSala;
     }
 
-    public void setTipoSala(TipoSala tipoSala) {
-        this.tipoSala = tipoSala;
-    }
 
-    public Integer getQuantidadeFileiras() {
-        return quantidadeFileiras;
+    @Override
+    public String toString() {
+        return "\n\t Sala{" +
+                "\n\t\t numero=" + numero +
+                "\n\t\t tipoSala=" + tipoSala.name() +
+                "\n\t\t quantidadeFileiras=" + quantidadeFileiras +
+                "\n\t\t quantidadeColunas=" + quantidadeColunas +
+                "\n\t\t assentos=" + assentos +
+                "\n\t\t fileirasAssentosDBOX=" + fileirasAssentosDBOX.toString() +
+                "\n\t }";
     }
-
-    public void setQuantidadeFileiras(Integer quantidadeFileiras) {
-        this.quantidadeFileiras = quantidadeFileiras;
-    }
-
-    public Integer getQuantidadeColunas() {
-        return quantidadeColunas;
-    }
-
-    public void setQuantidadeColunas(Integer quantidadeColunas) {
-        this.quantidadeColunas = quantidadeColunas;
-    }
-
-    public List<String> getAssentos() {
-        return assentos;
-    }
-
-    public void setAssentos(List<String> assentos) {
-        this.assentos = assentos;
-    }
-
-    public List<String> getFileirasAssentosDBOX() {
-        return fileirasAssentosDBOX;
-    }
-
-    public void setFileirasAssentosDBOX(List<String> fileirasAssentosDBOX) {
-        this.fileirasAssentosDBOX = fileirasAssentosDBOX;
-    }
-
 }

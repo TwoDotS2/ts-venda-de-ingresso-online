@@ -18,43 +18,18 @@ public class Filme {
         this.duracaoEmMinutos = duracaoEmMinutos;
     }
 
-    public String getName() {
-        return nome;
-    }
-
-    public void setName(String nome) {
-        this.nome = nome;
-    }
-
-    public ClassificacaoIndicativa getFaixaEtaria() {
+    public ClassificacaoIndicativa faixaEtaria() {
         return faixaEtaria;
     }
 
-    public void setFaixaEtaria(ClassificacaoIndicativa faixaEtaria) {
-        this.faixaEtaria = faixaEtaria;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public CategoriaFilme getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaFilme categoria) {
-        this.categoria = categoria;
-    }
-
-    public Integer getDuracaoEmMinutos() {
-        return duracaoEmMinutos;
-    }
-
-    public void setDuracaoEmMinutos(Integer duracaoEmMinutos) {
-        this.duracaoEmMinutos = duracaoEmMinutos;
+    @Override
+    public String toString() {
+        return "\n\t Filme{" +
+                "\n\t\t nome='" + nome +
+                "\n\t\t faixaEtaria=" + faixaEtaria +
+                "\n\t\t descricao='" + descricao +
+                "\n\t\t categoria=" + categoria.name() +
+                "\n\t\t duracaoEmMinutos=" + duracaoEmMinutos +
+                "\n\t }";
     }
 }

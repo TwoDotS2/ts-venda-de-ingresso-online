@@ -1,13 +1,12 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.*;
-import jdk.jfr.Unsigned;
 
 public class Compra {
-    public Sessao sessao;
-    public Cliente cliente;
-    public float preco;
-    public String codigoAssento;
+    private Sessao sessao;
+    private Cliente cliente;
+    private float preco;
+    private String codigoAssento;
 
     public Compra(Sessao sessao, Cliente cliente, float preco, String codigoAssento) {
         this.sessao = sessao;
@@ -22,7 +21,7 @@ public class Compra {
         }
 
         long idade = cliente.calcularIdade();
-        long faixaEtaria = sessao.getFilme().getFaixaEtaria().getClassificacaoIndicativa();
+        long faixaEtaria = sessao.filme().faixaEtaria().getClassificacaoIndicativa();
 
         if(idade < faixaEtaria){
             throw new RuntimeException("Idade menor que o esperado. Verifique a classificação indicativa!");
@@ -30,18 +29,18 @@ public class Compra {
 
         definirPrecoDoIngresso();
 
-        CategoriaCliente categoriaCliente = cliente.getCategoria();
+        CategoriaCliente categoriaCliente = cliente.categoria();
         if (categoriaCliente == CategoriaCliente.ESTUDANTE) {
             preco = preco / 2;
         }
 
-        return new Ingresso(sessao.getSala().getNumero(), categoriaCliente, codigoAssento, sessao.getData(), sessao.getHorario());
+        return new Ingresso(sessao.sala().numero(), categoriaCliente, codigoAssento, sessao.data(), sessao.horario());
     }
 
     private void definirPrecoDoIngresso() {
-        TipoDia tipoDia = sessao.getTipoDia();
-        TipoSala tipoSala = sessao.getSala().getTipoSala();
-        boolean assentoEhDBOX = sessao.getSala().assentoEhDBOX(codigoAssento);
+        TipoDia tipoDia = sessao.tipoDia();
+        TipoSala tipoSala = sessao.sala().tipoSala();
+        boolean assentoEhDBOX = sessao.sala().assentoEhDBOX(codigoAssento);
 
         if(tipoDia == TipoDia.SEGUNDA || tipoDia == TipoDia.TERCA || tipoDia == TipoDia.QUARTA){
             if(tipoSala == TipoSala._2D){
@@ -71,5 +70,31 @@ public class Compra {
 
             }
         }
+    }
+
+    public Sessao sessao() {
+        return sessao;
+    }
+
+    public Cliente cliente() {
+        return cliente;
+    }
+
+    public float preco() {
+        return preco;
+    }
+
+    public String codigoAssento() {
+        return codigoAssento;
+    }
+
+    @Override
+    public String toString() {
+        return "Compra{" + "\n" +
+                " sessao=" + sessao.toString() + "\n" +
+                " cliente=" + cliente.toString() + "\n" +
+                " preco=" + preco + "\n" +
+                " codigoAssento=" + codigoAssento + "\n" +
+                "}";
     }
 }

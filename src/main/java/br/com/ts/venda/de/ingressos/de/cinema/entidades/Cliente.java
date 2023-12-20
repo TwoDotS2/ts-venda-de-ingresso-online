@@ -1,11 +1,8 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
-import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoBeneficio;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Map;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
@@ -26,47 +23,22 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public CategoriaCliente getCategoria() {
+    public CategoriaCliente categoria() {
         return categoria;
-    }
-
-    public void setCategoriaCliente(CategoriaCliente categoria) {
-        this.categoria = categoria;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
     }
 
     public long calcularIdade(){
         return YEARS.between(dataNascimento, LocalDate.now());
+    }
+
+    @Override
+    public String toString() {
+        return "\n\t Cliente{" +
+                "\n\t\t categoria=" + categoria.name() +
+                "\n\t\t dataNascimento=" + dataNascimento +
+                "\n\t\t nomeCompleto='" + nomeCompleto +
+                "\n\t\t CPF='" + CPF +
+                "\n\t\t endereco='" + endereco +
+                "\n\t}";
     }
 }
