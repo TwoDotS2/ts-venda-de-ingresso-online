@@ -2,11 +2,8 @@ package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.Cliente;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
-import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoBeneficio;
 
 import java.time.LocalDate;
-import java.util.AbstractMap;
-import java.util.Map;
 
 public class ClienteBuilder {
     private CategoriaCliente categoria = CategoriaCliente.VISITANTE;

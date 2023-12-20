@@ -1,6 +1,7 @@
 package br.com.ts.venda.de.ingressos.de.cinema.builder;
 
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.*;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
 
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ public class SessaoBuilder {
     private Sala sala = new SalaBuilder().build();
     private Filme filme = new FilmeBuilder().build();
     private TipoDia tipoDia = TipoDia.QUINTA;
-    private Map<String, Cliente> assentosOcupados = Map.of("A4", new Cliente(),"A5", new Cliente());
+    private Map<String, Cliente> assentosOcupados = Map.of("A4", new ClienteBuilder()
+            .comCategoria(CategoriaCliente.ESTUDANTE).build(),"A5", new ClienteBuilder()
+            .comCategoria(CategoriaCliente.VISITANTE).build());
 
     public static SessaoBuilder umaSessao() {
         return new SessaoBuilder();
@@ -48,7 +51,8 @@ public class SessaoBuilder {
 
     public SessaoBuilder comAssentosOcupados(String cadeira){
         assentosOcupados.clear();
-        assentosOcupados = Map.of(cadeira, new Cliente());
+        assentosOcupados = Map.of(cadeira, new ClienteBuilder()
+                .comCategoria(CategoriaCliente.ESTUDANTE).build());
         return this;
     }
 
