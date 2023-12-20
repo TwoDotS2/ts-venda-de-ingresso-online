@@ -15,8 +15,6 @@ public class ClienteBuilder {
     private String CPF = "00000000000";
     private String endereco = "Avenida Salgado Filho";
 
-    public Map.Entry<TipoBeneficio, Integer> beneficio = new AbstractMap.SimpleEntry<>(TipoBeneficio.NENHUM, 0);
-
     public static ClienteBuilder umCliente(){ return new ClienteBuilder(); }
 
     public ClienteBuilder comCategoria(CategoriaCliente categoria){
@@ -27,7 +25,6 @@ public class ClienteBuilder {
         this.categoria = CategoriaCliente.ESTUDANTE;
         return this;
     }
-
 
     public ClienteBuilder comDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
@@ -49,18 +46,8 @@ public class ClienteBuilder {
         return this;
     }
 
-    public ClienteBuilder comBeneficioNormal(Integer usosDisponiveis){
-        beneficio = new AbstractMap.SimpleEntry<>(TipoBeneficio.NORMAL, usosDisponiveis);
-        return this;
-    }
-
-    public ClienteBuilder comBeneficioBlack(Integer usosDisponiveis){
-        beneficio = new AbstractMap.SimpleEntry<>(TipoBeneficio.BLACK, usosDisponiveis);
-        return this;
-    }
-
 
     public Cliente build() {
-        return new Cliente(categoria, dataNascimento, nomeCompleto, CPF, endereco, beneficio);
+        return new Cliente(categoria, dataNascimento, nomeCompleto, CPF, endereco);
     }
 }

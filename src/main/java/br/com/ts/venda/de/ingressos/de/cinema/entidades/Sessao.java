@@ -12,13 +12,19 @@ public class Sessao {
     private Sala sala;
     private Filme filme;
     private TipoDia tipoDia;
+    private Map<String, Cliente> assentosOcupados;
 
-    public Sessao(LocalTime horario, LocalDate data, Sala sala, Filme filme, TipoDia tipoDia) {
+    public Sessao(LocalTime horario, LocalDate data, Sala sala, Filme filme, TipoDia tipoDia, Map<String, Cliente> assentosOcupados) {
         this.horario = horario;
         this.data = data;
         this.sala = sala;
         this.filme = filme;
         this.tipoDia = tipoDia;
+        this.assentosOcupados = assentosOcupados;
+    }
+
+    public Boolean assentoEstaDisponivel(String assento){
+        return !assentosOcupados.containsKey(assento);
     }
 
     public LocalTime getHorario() {
@@ -59,5 +65,13 @@ public class Sessao {
 
     public void setTipoDia(TipoDia tipoDia) {
         this.tipoDia = tipoDia;
+    }
+
+    public Map<String, Cliente> getAssentosOcupados() {
+        return assentosOcupados;
+    }
+
+    public void setAssentosOcupados(Map<String, Cliente> assentosOcupados) {
+        this.assentosOcupados = assentosOcupados;
     }
 }

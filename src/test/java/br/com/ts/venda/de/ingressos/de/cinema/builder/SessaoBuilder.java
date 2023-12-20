@@ -5,6 +5,7 @@ import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class SessaoBuilder {
     private Sala sala = new SalaBuilder().build();
     private Filme filme = new FilmeBuilder().build();
     private TipoDia tipoDia = TipoDia.QUINTA;
+    private Map<String, Cliente> assentosOcupados = Map.of("A4", new Cliente(),"A5", new Cliente());
 
     public static SessaoBuilder umaSessao() {
         return new SessaoBuilder();
@@ -44,20 +46,13 @@ public class SessaoBuilder {
         return this;
     }
 
-    public SessaoBuilder comDiaDeterminandoTipoDia(LocalDate data) {
-        switch(data.getDayOfWeek()){
-            case MONDAY -> this.tipoDia = TipoDia.SEGUNDA;
-            case TUESDAY -> this.tipoDia = TipoDia.TERCA;
-            case WEDNESDAY -> this.tipoDia = TipoDia.QUARTA;
-            case THURSDAY -> this.tipoDia = TipoDia.QUINTA;
-            case FRIDAY -> this.tipoDia = TipoDia.SEXTA;
-            case SATURDAY -> this.tipoDia = TipoDia.SABADO;
-            case SUNDAY -> this.tipoDia = TipoDia.DOMINGO;
-        };
+    public SessaoBuilder comAssentosOcupados(String cadeira){
+        assentosOcupados.clear();
+        assentosOcupados = Map.of(cadeira, new Cliente());
         return this;
     }
 
     public Sessao build() {
-        return new Sessao(horario, data, sala, filme, tipoDia);
+        return new Sessao(horario, data, sala, filme, tipoDia, assentosOcupados);
     }
 }
