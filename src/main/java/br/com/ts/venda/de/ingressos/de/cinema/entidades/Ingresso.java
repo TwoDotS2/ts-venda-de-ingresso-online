@@ -1,14 +1,9 @@
 package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
-import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoBeneficio;
-import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import static br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia.*;
-import static java.lang.constant.ConstantDescs.NULL;
 
 public class Ingresso {
     private long numeroSala;
