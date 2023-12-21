@@ -33,7 +33,6 @@ public class Test {
 
         Exception excecao = assertThrows(Exception.class, () -> compra.comprarIngresso());
         assertTrue(excecao.getMessage().contains(excecaoEsperada));
-        System.out.println(compra.toString());
     }
 
     static Stream<Arguments> geraPedidoIngresso() {
