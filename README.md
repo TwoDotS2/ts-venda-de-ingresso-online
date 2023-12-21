@@ -14,7 +14,7 @@ Com o projeto aberto na IDE Eclipse, vá até o diretório src/test/java/com/ts/
 
 Haverá o arquivo **Test.java**, clicando com o botão direito, na janela que abrir, clique em **Run As**, e logo em seguida clique na opção **JUnit Test**. 
 
-## Amostrar dos testes estruturais no Jacoco
+## Amostras dos testes estruturais no Jacoco
 
 No repositório já existe um arquivo **index.html** contendo o relatório gerado das coberturas adquiridas
 com os testes. 
