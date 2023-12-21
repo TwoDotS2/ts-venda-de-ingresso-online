@@ -11,12 +11,14 @@ public class Sala {
     private Integer quantidadeFileiras;
     private Integer quantidadeColunas;
     private List<String> assentos;
+
     private List<String> fileirasAssentosDBOX;
 
     public Sala(){}
 
     public Sala(Integer numero, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,
                 List<String> assentos, List<String> fileirasAssentosDBOX) {
+      
         this.numero = numero;
         this.tipoSala = tipoSala;
         this.quantidadeFileiras = quantidadeFileiras;
@@ -64,5 +66,6 @@ public class Sala {
                 "\n\t\t assentos=" + assentos +
                 "\n\t\t fileirasAssentosDBOX=" + fileirasAssentosDBOX.toString() +
                 "\n\t }";
-    }
+
+  }
 }

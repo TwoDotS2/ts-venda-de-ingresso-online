@@ -9,6 +9,7 @@ import java.util.List;
 import static br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala.gerarAssentos;
 
 public class SalaBuilder {
+
     private Integer numero = 1;
     private TipoSala tipoSala = TipoSala._2D;
     private Integer quantidadeFileiras = 20;
@@ -42,6 +43,7 @@ public class SalaBuilder {
         return this;
     }
 
+
     public SalaBuilder comFileirasAssentosDBOX(List<String> fileirasAssentosDBOX) {
         this.fileirasAssentosDBOX = fileirasAssentosDBOX;
         return this;
@@ -50,4 +52,5 @@ public class SalaBuilder {
     public Sala build() {
         return new Sala(numero, tipoSala,quantidadeFileiras, quantidadeColunas, assentos, fileirasAssentosDBOX);
     }
+
 }
