@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Cliente.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.entidades</a> &gt; <span class="el_source">Cliente.java</span></div><h1>Cliente.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.entidades;
+
+import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
+
+import java.time.LocalDate;
+
+import static java.time.temporal.ChronoUnit.YEARS;
+
+public class Cliente {
+    private CategoriaCliente categoria;
+    private LocalDate dataNascimento;
+    private String nomeCompleto;
+    private String CPF;
+    private String endereco;
+
+<span class="nc" id="L16">    public Cliente(){};</span>
+
+<span class="fc" id="L18">    public Cliente(CategoriaCliente categoria, LocalDate dataNascimento, String nomeCompleto, String CPF, String endereco) {</span>
+<span class="fc" id="L19">        this.categoria = categoria;</span>
+<span class="fc" id="L20">        this.dataNascimento = dataNascimento;</span>
+<span class="fc" id="L21">        this.nomeCompleto = nomeCompleto;</span>
+<span class="fc" id="L22">        this.CPF = CPF;</span>
+<span class="fc" id="L23">        this.endereco = endereco;</span>
+<span class="fc" id="L24">    }</span>
+
+    public CategoriaCliente categoria() {
+<span class="fc" id="L27">        return categoria;</span>
+    }
+
+    public long calcularIdade(){
+<span class="fc" id="L31">        return YEARS.between(dataNascimento, LocalDate.now());</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L36">        return &quot;\n\t Cliente{&quot; +</span>
+<span class="fc" id="L37">                &quot;\n\t\t categoria=&quot; + categoria.name() +</span>
+<span class="fc" id="L38">                &quot;\n\t\t dataNascimento=&quot; + dataNascimento +</span>
+<span class="fc" id="L39">                &quot;\n\t\t nomeCompleto='&quot; + nomeCompleto +</span>
+<span class="fc" id="L40">                &quot;\n\t\t CPF='&quot; + CPF +</span>
+<span class="fc" id="L41">                &quot;\n\t\t endereco='&quot; + endereco +</span>
+                &quot;\n\t}&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

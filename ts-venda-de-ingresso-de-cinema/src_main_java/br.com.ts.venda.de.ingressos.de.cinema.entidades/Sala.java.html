@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Sala.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.entidades</a> &gt; <span class="el_source">Sala.java</span></div><h1>Sala.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.entidades;
+
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Sala {
+    private Integer numero;
+    private TipoSala tipoSala;
+    private Integer quantidadeFileiras;
+    private Integer quantidadeColunas;
+    private List&lt;String&gt; assentos;
+
+    private List&lt;String&gt; fileirasAssentosDBOX;
+
+<span class="nc" id="L17">    public Sala(){}</span>
+
+<span class="fc" id="L19">    public Sala(Integer numero, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,</span>
+                List&lt;String&gt; assentos, List&lt;String&gt; fileirasAssentosDBOX) {
+      
+<span class="fc" id="L22">        this.numero = numero;</span>
+<span class="fc" id="L23">        this.tipoSala = tipoSala;</span>
+<span class="fc" id="L24">        this.quantidadeFileiras = quantidadeFileiras;</span>
+<span class="fc" id="L25">        this.quantidadeColunas = quantidadeColunas;</span>
+<span class="fc" id="L26">        this.assentos = assentos;</span>
+<span class="fc" id="L27">        this.fileirasAssentosDBOX = fileirasAssentosDBOX;</span>
+<span class="fc" id="L28">    }</span>
+
+    public static List&lt;String&gt; gerarAssentos(Integer quantidadeFileiras, Integer quantidadeColunas){
+<span class="fc" id="L31">        List&lt;String&gt; assentos = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (char fileira = 'A'; fileira &lt;= 'A' + quantidadeFileiras-1; fileira++) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (int coluna = 1; coluna &lt;= quantidadeColunas; coluna++) {</span>
+
+<span class="fc" id="L36">                String assento = fileira + Integer.toString(coluna);</span>
+
+<span class="fc" id="L38">                assentos.add(assento);</span>
+            }
+        }
+
+<span class="fc" id="L42">        return assentos;</span>
+    }
+
+    public Boolean assentoEhDBOX(String assento){
+<span class="fc" id="L46">        String fileira = assento.charAt(0) + &quot;&quot;;</span>
+<span class="fc" id="L47">        return fileirasAssentosDBOX.contains(fileira);</span>
+    }
+
+    public Integer numero() {
+<span class="fc" id="L51">        return numero;</span>
+    }
+
+    public TipoSala tipoSala() {
+<span class="fc" id="L55">        return tipoSala;</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="fc" id="L61">        return &quot;\n\t Sala{&quot; +</span>
+<span class="fc" id="L62">                &quot;\n\t\t numero=&quot; + numero +</span>
+<span class="fc" id="L63">                &quot;\n\t\t tipoSala=&quot; + tipoSala.name() +</span>
+<span class="fc" id="L64">                &quot;\n\t\t quantidadeFileiras=&quot; + quantidadeFileiras +</span>
+<span class="fc" id="L65">                &quot;\n\t\t quantidadeColunas=&quot; + quantidadeColunas +</span>
+<span class="fc" id="L66">                &quot;\n\t\t assentos=&quot; + assentos +</span>
+<span class="fc" id="L67">                &quot;\n\t\t fileirasAssentosDBOX=&quot; + fileirasAssentosDBOX.toString() +</span>
+                &quot;\n\t }&quot;;
+
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

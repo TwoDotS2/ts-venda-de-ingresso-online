@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CompraBuilder.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.builder</a> &gt; <span class="el_source">CompraBuilder.java</span></div><h1>CompraBuilder.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.builder;
+
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Cliente;
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Compra;
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Ingresso;
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sessao;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.ClassificacaoIndicativa;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
+
+import java.time.LocalDate;
+import java.util.List;
+
+<span class="fc" id="L15">public class CompraBuilder {</span>
+<span class="fc" id="L16">    private Sessao sessao = new SessaoBuilder().build();</span>
+<span class="fc" id="L17">    private Cliente cliente = new ClienteBuilder().build();</span>
+<span class="fc" id="L18">    private float preco = 100;</span>
+<span class="fc" id="L19">    private String codigoAssento = &quot;A1&quot;;</span>
+
+
+    public static CompraBuilder umaCompra() {
+<span class="fc" id="L23">        return new CompraBuilder();</span>
+    }
+
+    public CompraBuilder comSessao(Sessao sessao) {
+<span class="nc" id="L27">        this.sessao = sessao;</span>
+<span class="nc" id="L28">        return this;</span>
+    }
+
+    public CompraBuilder comCliente(Cliente cliente) {
+<span class="nc" id="L32">        this.cliente = cliente;</span>
+<span class="nc" id="L33">        return this;</span>
+    }
+
+    public CompraBuilder comPreco(float preco) {
+<span class="nc" id="L37">        this.preco = preco;</span>
+<span class="nc" id="L38">        return this;</span>
+    }
+
+    public CompraBuilder comCodigoAssento(String codigoAssento) {
+<span class="fc" id="L42">        this.codigoAssento = codigoAssento;</span>
+<span class="fc" id="L43">        return this;</span>
+    }
+
+    public CompraBuilder com_2d_MeiaEntrada_SegTerQuar(List&lt;String&gt; dbox){
+<span class="fc" id="L47">        this.cliente = new ClienteBuilder().comCategoria(CategoriaCliente.ESTUDANTE).build();</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if(dbox.isEmpty()){</span>
+<span class="fc" id="L49">            this.sessao = new SessaoBuilder().comTipoDia(TipoDia.SEGUNDA).build();</span>
+<span class="fc" id="L50">        }</span>
+        else{
+<span class="fc" id="L52">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L53">                    .comTipoDia(TipoDia.SEGUNDA)</span>
+<span class="fc" id="L54">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L55">                    .build();</span>
+        }
+<span class="fc" id="L57">        return this;</span>
+    }
+
+    public CompraBuilder com_3d_MeiaEntrada_SegTerQuar(List&lt;String&gt; dbox){
+<span class="fc" id="L61">        this.cliente = new ClienteBuilder().comCategoria(CategoriaCliente.ESTUDANTE).build();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if(dbox.isEmpty()){</span>
+<span class="fc" id="L63">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L64">                    .comSala(SalaBuilder.umaSala().com3d().build())</span>
+<span class="fc" id="L65">                    .comTipoDia(TipoDia.TERCA)</span>
+<span class="fc" id="L66">                    .build();</span>
+<span class="fc" id="L67">        }</span>
+        else{
+<span class="fc" id="L69">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L70">                    .comSala(SalaBuilder.umaSala().com3d().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L71">                    .comTipoDia(TipoDia.TERCA)</span>
+<span class="fc" id="L72">                    .build();</span>
+        }
+<span class="fc" id="L74">        return this;</span>
+    }
+
+    public CompraBuilder com_2d_MeiaEntrada_Quinta(List&lt;String&gt; dbox){
+<span class="fc" id="L78">        this.cliente = new ClienteBuilder().comCategoria(CategoriaCliente.ESTUDANTE).build();</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L80">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L81">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L82">                    .build();</span>
+        }
+<span class="fc" id="L84">        return this;</span>
+    }
+
+    public CompraBuilder com_3d_MeiaEntrada_Quinta(List&lt;String&gt; dbox){
+<span class="fc" id="L88">        this.cliente = new ClienteBuilder().comCategoria(CategoriaCliente.ESTUDANTE).build();</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L90">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L91">                    .comSala(SalaBuilder.umaSala().com3d().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L92">                    .build();</span>
+<span class="fc" id="L93">        }</span>
+        else{
+<span class="fc" id="L95">            this.sessao = new SessaoBuilder().comSala(SalaBuilder.umaSala().com3d().build()).build();</span>
+        }
+<span class="fc" id="L97">        return this;</span>
+    }
+
+    public CompraBuilder com_2d_MeiaEntrada_FdsFeriado(List&lt;String&gt; dbox){
+<span class="fc" id="L101">        this.cliente = new ClienteBuilder().comCategoria(CategoriaCliente.ESTUDANTE).build();</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L103">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L104">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L105">                    .comTipoDia(TipoDia.FERIADO)</span>
+<span class="fc" id="L106">                    .build();</span>
+<span class="fc" id="L107">        }</span>
+        else{
+<span class="fc" id="L109">            this.sessao = new SessaoBuilder().comTipoDia(TipoDia.FERIADO).build();</span>
+        }
+<span class="fc" id="L111">        return this;</span>
+    }
+
+    public CompraBuilder com_3d_MeiaEntrada_FdsFeriado(List&lt;String&gt; dbox){
+<span class="fc" id="L115">        this.cliente = new ClienteBuilder().comCategoria(CategoriaCliente.ESTUDANTE).build();</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L117">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L118">                    .comSala(SalaBuilder.umaSala().com3d().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L119">                    .comTipoDia(TipoDia.SEXTA)</span>
+<span class="fc" id="L120">                    .build();</span>
+<span class="fc" id="L121">        }</span>
+        else{
+<span class="fc" id="L123">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L124">                    .comSala(SalaBuilder.umaSala().com3d().build())</span>
+<span class="fc" id="L125">                    .comTipoDia(TipoDia.SEXTA)</span>
+<span class="fc" id="L126">                    .build();</span>
+        }
+<span class="fc" id="L128">        return this;</span>
+    }
+
+    public CompraBuilder com_2d_Inteira_SegTerQuar(List&lt;String&gt; dbox){
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L133">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L134">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L135">                    .comTipoDia(TipoDia.QUARTA)</span>
+<span class="fc" id="L136">                    .build();</span>
+<span class="fc" id="L137">        }</span>
+        else{
+<span class="fc" id="L139">            this.sessao = new SessaoBuilder().comTipoDia(TipoDia.QUARTA).build();</span>
+        }
+<span class="fc" id="L141">        return this;</span>
+    }
+
+    public CompraBuilder com_3d_Inteira_SegTerQuar(List&lt;String&gt; dbox){
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L146">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L147">                    .comSala(SalaBuilder.umaSala().com3d().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L148">                    .comTipoDia(TipoDia.SEGUNDA)</span>
+<span class="fc" id="L149">                    .build();</span>
+<span class="fc" id="L150">        }</span>
+        else{
+<span class="fc" id="L152">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L153">                    .comSala(SalaBuilder.umaSala().com3d().build())</span>
+<span class="fc" id="L154">                    .comTipoDia(TipoDia.SEGUNDA)</span>
+<span class="fc" id="L155">                    .build();</span>
+        }
+<span class="fc" id="L157">        return this;</span>
+    }
+
+    public CompraBuilder com_2d_Inteira_Quinta(List&lt;String&gt; dbox){
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L162">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L163">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L164">                    .build();</span>
+        }
+<span class="fc" id="L166">        return this;</span>
+    }
+
+    public CompraBuilder com_3d_Inteira_Quinta(List&lt;String&gt; dbox){
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L171">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L172">                    .comSala(SalaBuilder.umaSala().com3d().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L173">                    .build();</span>
+<span class="fc" id="L174">        }</span>
+        else{
+<span class="fc" id="L176">            this.sessao = new SessaoBuilder().comSala(SalaBuilder.umaSala().com3d().build()).build();</span>
+        }
+<span class="fc" id="L178">        return this;</span>
+    }
+
+    public CompraBuilder com_2d_Inteira_FdsFeriado(List&lt;String&gt; dbox){
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L183">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L184">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L185">                    .comTipoDia(TipoDia.SABADO)</span>
+<span class="fc" id="L186">                    .build();</span>
+<span class="fc" id="L187">        }</span>
+        else{
+<span class="fc" id="L189">            this.sessao = new SessaoBuilder().comTipoDia(TipoDia.SABADO).build();</span>
+        }
+<span class="fc" id="L191">        return this;</span>
+    }
+
+    public CompraBuilder com_3d_Inteira_FdsFeriado(List&lt;String&gt; dbox){
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        if(!dbox.isEmpty()){</span>
+<span class="fc" id="L196">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L197">                    .comSala(SalaBuilder.umaSala().com3d().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="fc" id="L198">                    .comTipoDia(TipoDia.PRE_ESTREIA)</span>
+<span class="fc" id="L199">                    .build();</span>
+<span class="fc" id="L200">        }</span>
+        else{
+<span class="fc" id="L202">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L203">                    .comSala(SalaBuilder.umaSala().com3d().build())</span>
+<span class="fc" id="L204">                    .comTipoDia(TipoDia.PRE_ESTREIA)</span>
+<span class="fc" id="L205">                    .build();</span>
+        }
+<span class="fc" id="L207">        return this;</span>
+    }
+    public CompraBuilder com_TipoSala_E_Dia_Especificos(TipoSala tiposala, TipoDia tipodia, List&lt;String&gt; dbox){
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">        if(!dbox.isEmpty()){</span>
+<span class="nc" id="L211">            this.sessao = new SessaoBuilder()</span>
+<span class="nc" id="L212">                    .comSala(SalaBuilder.umaSala().comTipoSala(tiposala).comFileirasAssentosDBOX(dbox).build())</span>
+<span class="nc" id="L213">                    .comTipoDia(tipodia)</span>
+<span class="nc" id="L214">                    .build();</span>
+<span class="nc" id="L215">        }</span>
+        else{
+<span class="fc" id="L217">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L218">                    .comSala(SalaBuilder.umaSala().comTipoSala(tiposala).build())</span>
+<span class="fc" id="L219">                    .comTipoDia(tipodia)</span>
+<span class="fc" id="L220">                    .build();</span>
+        }
+<span class="fc" id="L222">        return this;</span>
+    }
+
+    public CompraBuilder com_Idade_E_Classificacao_Especificos(LocalDate nascimento, ClassificacaoIndicativa classificacaoIndicativa, List&lt;String&gt; dbox) {
+<span class="fc" id="L226">        this.cliente = new ClienteBuilder().comDataNascimento(nascimento).build();</span>
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">        if (!dbox.isEmpty()) {</span>
+<span class="nc" id="L228">            this.sessao = new SessaoBuilder()</span>
+<span class="nc" id="L229">                    .comSala(SalaBuilder.umaSala().comFileirasAssentosDBOX(dbox).build())</span>
+<span class="nc" id="L230">                    .comFilme(FilmeBuilder.umFilme().comFaixaEtaria(classificacaoIndicativa).build())</span>
+<span class="nc" id="L231">                    .build();</span>
+<span class="nc" id="L232">        }</span>
+        else{
+<span class="fc" id="L234">            this.sessao = new SessaoBuilder()</span>
+<span class="fc" id="L235">                    .comFilme(FilmeBuilder.umFilme().comFaixaEtaria(classificacaoIndicativa).build())</span>
+<span class="fc" id="L236">                    .build();</span>
+        }
+<span class="fc" id="L238">        return this;</span>
+    }
+
+
+
+    public Compra build() {
+<span class="fc" id="L244">        return new Compra(sessao, cliente, preco, codigoAssento);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

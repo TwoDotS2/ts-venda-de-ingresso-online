@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Preco.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.enums</a> &gt; <span class="el_source">Preco.java</span></div><h1>Preco.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.enums;
+
+<span class="fc" id="L3">public enum Preco {</span>
+<span class="fc" id="L4">    INICIO_SEMANA_2D(27),</span>
+<span class="fc" id="L5">    MEIO_SEMANA_2D(40),</span>
+<span class="fc" id="L6">    FIM_SEMANA_2D(42),</span>
+
+<span class="fc" id="L8">    INICIO_SEMANA_3D(34),</span>
+<span class="fc" id="L9">    MEIO_SEMANA_3D(46),</span>
+<span class="fc" id="L10">    FIM_SEMANA_3D(49),</span>
+
+<span class="fc" id="L12">    INICIO_SEMANA_2D_DBOX(41),</span>
+<span class="fc" id="L13">    MEIO_SEMANA_2D_DBOX(60),</span>
+<span class="fc" id="L14">    FIM_SEMANA_2D_DBOX(63),</span>
+
+<span class="fc" id="L16">    INICIO_SEMANA_3D_DBOX(48),</span>
+<span class="fc" id="L17">    MEIO_SEMANA_3D_DBOX(70),</span>
+<span class="fc" id="L18">    FIM_SEMANA_3D_DBOX(74);</span>
+
+    private final int preco;
+
+<span class="fc" id="L22">    Preco(int preco) {</span>
+<span class="fc" id="L23">        this.preco = preco;</span>
+<span class="fc" id="L24">    }</span>
+
+    public int getPreco() {
+<span class="fc" id="L27">        return preco;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

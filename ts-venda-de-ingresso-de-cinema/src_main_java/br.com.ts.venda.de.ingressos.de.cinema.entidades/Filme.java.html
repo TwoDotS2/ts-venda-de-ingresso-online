@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Filme.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.entidades</a> &gt; <span class="el_source">Filme.java</span></div><h1>Filme.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.entidades;
+
+import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaFilme;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.ClassificacaoIndicativa;
+
+public class Filme {
+    private String nome;
+    private ClassificacaoIndicativa faixaEtaria;
+    private String descricao;
+    private CategoriaFilme categoria;
+    private Integer duracaoEmMinutos;
+
+<span class="fc" id="L13">    public Filme(String nome, ClassificacaoIndicativa faixaEtaria, String descricao, CategoriaFilme categoria, Integer duracaoEmMinutos) {</span>
+<span class="fc" id="L14">        this.nome = nome;</span>
+<span class="fc" id="L15">        this.faixaEtaria = faixaEtaria;</span>
+<span class="fc" id="L16">        this.descricao = descricao;</span>
+<span class="fc" id="L17">        this.categoria = categoria;</span>
+<span class="fc" id="L18">        this.duracaoEmMinutos = duracaoEmMinutos;</span>
+<span class="fc" id="L19">    }</span>
+
+    public ClassificacaoIndicativa faixaEtaria() {
+<span class="fc" id="L22">        return faixaEtaria;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L27">        return &quot;\n\t Filme{&quot; +</span>
+<span class="fc" id="L28">                &quot;\n\t\t nome='&quot; + nome +</span>
+<span class="fc" id="L29">                &quot;\n\t\t faixaEtaria=&quot; + faixaEtaria +</span>
+<span class="fc" id="L30">                &quot;\n\t\t descricao='&quot; + descricao +</span>
+<span class="fc" id="L31">                &quot;\n\t\t categoria=&quot; + categoria.name() +</span>
+<span class="fc" id="L32">                &quot;\n\t\t duracaoEmMinutos=&quot; + duracaoEmMinutos +</span>
+                &quot;\n\t }&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

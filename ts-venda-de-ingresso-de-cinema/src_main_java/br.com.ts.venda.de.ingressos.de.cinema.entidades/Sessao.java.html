@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Sessao.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.entidades</a> &gt; <span class="el_source">Sessao.java</span></div><h1>Sessao.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.entidades;
+
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Map;
+
+public class Sessao {
+    private LocalTime horario;
+    private LocalDate data;
+    private Sala sala;
+    private Filme filme;
+    private TipoDia tipoDia;
+    private Map&lt;String, Cliente&gt; assentosOcupados;
+
+<span class="fc" id="L17">    public Sessao(LocalTime horario, LocalDate data, Sala sala, Filme filme, TipoDia tipoDia, Map&lt;String, Cliente&gt; assentosOcupados) {</span>
+<span class="fc" id="L18">        this.horario = horario;</span>
+<span class="fc" id="L19">        this.data = data;</span>
+<span class="fc" id="L20">        this.sala = sala;</span>
+<span class="fc" id="L21">        this.filme = filme;</span>
+<span class="fc" id="L22">        this.tipoDia = tipoDia;</span>
+<span class="fc" id="L23">        this.assentosOcupados = assentosOcupados;</span>
+<span class="fc" id="L24">    }</span>
+
+    public Boolean assentoEstaDisponivel(String assento){
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        return !assentosOcupados.containsKey(assento);</span>
+    }
+
+    public LocalTime horario() {
+<span class="fc" id="L31">        return horario;</span>
+    }
+
+    public LocalDate data() {
+<span class="fc" id="L35">        return data;</span>
+    }
+
+    public Sala sala() {
+<span class="fc" id="L39">        return sala;</span>
+    }
+
+    public Filme filme() {
+<span class="fc" id="L43">        return filme;</span>
+    }
+
+    public TipoDia tipoDia() {
+<span class="fc" id="L47">        return tipoDia;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L52">        return &quot;\n\t Sessao{&quot; +</span>
+<span class="fc" id="L53">                &quot;\n\t\t horario=&quot; + horario +</span>
+<span class="fc" id="L54">                &quot;\n\t\t data=&quot; + data +</span>
+<span class="fc" id="L55">                &quot;\n\t\t sala=&quot; + sala.toString() +</span>
+<span class="fc" id="L56">                &quot;\n\t\t filme=&quot; + filme.toString() +</span>
+<span class="fc" id="L57">                &quot;\n\t\t tipoDia=&quot; + tipoDia.name() +</span>
+<span class="fc" id="L58">                &quot;\n\t\t assentosOcupados=&quot; + assentosOcupados.toString() +</span>
+                &quot;\n\t }&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

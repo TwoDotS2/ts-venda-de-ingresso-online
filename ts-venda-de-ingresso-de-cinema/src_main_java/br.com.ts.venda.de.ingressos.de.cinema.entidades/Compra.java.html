@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Compra.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.entidades</a> &gt; <span class="el_source">Compra.java</span></div><h1>Compra.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.entidades;
+
+import br.com.ts.venda.de.ingressos.de.cinema.enums.*;
+
+public class Compra {
+    private Sessao sessao;
+    private Cliente cliente;
+    private float preco;
+    private String codigoAssento;
+
+<span class="fc" id="L11">    public Compra(Sessao sessao, Cliente cliente, float preco, String codigoAssento) {</span>
+<span class="fc" id="L12">        this.sessao = sessao;</span>
+<span class="fc" id="L13">        this.cliente = cliente;</span>
+<span class="fc" id="L14">        this.preco = preco;</span>
+<span class="fc" id="L15">        this.codigoAssento = codigoAssento;</span>
+<span class="fc" id="L16">    }</span>
+    public Ingresso comprarIngresso(){
+
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if(!sessao.assentoEstaDisponivel(codigoAssento)){</span>
+<span class="fc" id="L20">            throw new RuntimeException(&quot;Assento não está disponível&quot;);</span>
+        }
+
+<span class="fc" id="L23">        long idade = cliente.calcularIdade();</span>
+<span class="fc" id="L24">        long faixaEtaria = sessao.filme().faixaEtaria().getClassificacaoIndicativa();</span>
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(idade &lt; faixaEtaria){</span>
+<span class="fc" id="L27">            throw new RuntimeException(&quot;Idade menor que o esperado. Verifique a classificação indicativa!&quot;);</span>
+        }
+
+<span class="fc" id="L30">        definirPrecoDoIngresso();</span>
+
+<span class="fc" id="L32">        CategoriaCliente categoriaCliente = cliente.categoria();</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (categoriaCliente == CategoriaCliente.ESTUDANTE) {</span>
+<span class="fc" id="L34">            preco = preco / 2;</span>
+        }
+
+<span class="fc" id="L37">        return new Ingresso(sessao.sala().numero(), categoriaCliente, codigoAssento, sessao.data(), sessao.horario());</span>
+    }
+
+    private void definirPrecoDoIngresso() {
+<span class="fc" id="L41">        TipoDia tipoDia = sessao.tipoDia();</span>
+<span class="fc" id="L42">        TipoSala tipoSala = sessao.sala().tipoSala();</span>
+<span class="fc" id="L43">        boolean assentoEhDBOX = sessao.sala().assentoEhDBOX(codigoAssento);</span>
+
+<span class="fc bfc" id="L45" title="All 6 branches covered.">        if(tipoDia == TipoDia.SEGUNDA || tipoDia == TipoDia.TERCA || tipoDia == TipoDia.QUARTA){</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if(tipoSala == TipoSala._2D){</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                preco = assentoEhDBOX? Preco.INICIO_SEMANA_2D_DBOX.getPreco() : Preco.INICIO_SEMANA_2D.getPreco();</span>
+
+<span class="fc" id="L49">            } else {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">                preco = assentoEhDBOX? Preco.INICIO_SEMANA_3D_DBOX.getPreco() : Preco.INICIO_SEMANA_3D.getPreco();</span>
+
+            }
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        } else if(tipoDia == TipoDia.QUINTA){</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if(tipoSala == TipoSala._2D){</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">                preco = assentoEhDBOX? Preco.MEIO_SEMANA_2D_DBOX.getPreco() : Preco.MEIO_SEMANA_2D.getPreco();</span>
+
+<span class="fc" id="L58">            } else {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                preco = assentoEhDBOX? Preco.MEIO_SEMANA_3D_DBOX.getPreco() : Preco.MEIO_SEMANA_3D.getPreco();</span>
+
+            }
+
+<span class="fc bfc" id="L63" title="All 6 branches covered.">        }else if(tipoDia == TipoDia.SEXTA || tipoDia == TipoDia.SABADO || tipoDia == TipoDia.DOMINGO</span>
+<span class="fc bfc" id="L64" title="All 4 branches covered.">                || tipoDia == TipoDia.FERIADO || tipoDia == TipoDia.PRE_ESTREIA){</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (tipoSala == TipoSala._2D){</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">                preco = assentoEhDBOX? Preco.FIM_SEMANA_2D_DBOX.getPreco() : Preco.FIM_SEMANA_2D.getPreco();</span>
+
+<span class="fc" id="L68">            } else {</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                preco = assentoEhDBOX? Preco.FIM_SEMANA_3D_DBOX.getPreco() : Preco.FIM_SEMANA_3D.getPreco();</span>
+
+            }
+        }
+<span class="fc" id="L73">    }</span>
+
+    public Sessao sessao() {
+<span class="fc" id="L76">        return sessao;</span>
+    }
+
+    public Cliente cliente() {
+<span class="fc" id="L80">        return cliente;</span>
+    }
+
+    public float preco() {
+<span class="fc" id="L84">        return preco;</span>
+    }
+
+    public String codigoAssento() {
+<span class="fc" id="L88">        return codigoAssento;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L93">        return &quot;Compra{&quot; + &quot;\n&quot; +</span>
+<span class="fc" id="L94">                &quot; sessao=&quot; + sessao.toString() + &quot;\n&quot; +</span>
+<span class="fc" id="L95">                &quot; cliente=&quot; + cliente.toString() + &quot;\n&quot; +</span>
+<span class="fc" id="L96">                &quot; preco=&quot; + preco + &quot;\n&quot; +</span>
+<span class="fc" id="L97">                &quot; codigoAssento=&quot; + codigoAssento + &quot;\n&quot; +</span>
+                &quot;}&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

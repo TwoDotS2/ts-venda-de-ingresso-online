@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SalaBuilder.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema.builder</a> &gt; <span class="el_source">SalaBuilder.java</span></div><h1>SalaBuilder.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema.builder;
+
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala.gerarAssentos;
+
+<span class="fc" id="L11">public class SalaBuilder {</span>
+
+<span class="fc" id="L13">    private Integer numero = 1;</span>
+<span class="fc" id="L14">    private TipoSala tipoSala = TipoSala._2D;</span>
+<span class="fc" id="L15">    private Integer quantidadeFileiras = 20;</span>
+<span class="fc" id="L16">    private Integer quantidadeColunas = 10;</span>
+<span class="fc" id="L17">    private List&lt;String&gt; assentos = gerarAssentos(quantidadeFileiras, quantidadeColunas);</span>
+<span class="fc" id="L18">    private List&lt;String&gt; fileirasAssentosDBOX = new ArrayList&lt;&gt;();</span>
+
+    public static SalaBuilder umaSala() {
+<span class="fc" id="L21">        return new SalaBuilder();</span>
+    }
+
+    public SalaBuilder comNumero(Integer numero) {
+<span class="nc" id="L25">        this.numero = numero;</span>
+<span class="nc" id="L26">        return this;</span>
+    }
+
+    public SalaBuilder comTipoSala(TipoSala tipoSala) {
+<span class="fc" id="L30">        this.tipoSala = tipoSala;</span>
+<span class="fc" id="L31">        return this;</span>
+    }
+
+    public SalaBuilder com3d() {
+<span class="fc" id="L35">        this.tipoSala = TipoSala._3D;</span>
+<span class="fc" id="L36">        return this;</span>
+    }
+
+    public SalaBuilder comSalaEspecifica(Integer rows, Integer columns){
+<span class="nc" id="L40">        this.quantidadeFileiras = rows;</span>
+<span class="nc" id="L41">        this.quantidadeColunas = columns;</span>
+<span class="nc" id="L42">        gerarAssentos(quantidadeFileiras, quantidadeColunas);</span>
+<span class="nc" id="L43">        return this;</span>
+    }
+
+
+    public SalaBuilder comFileirasAssentosDBOX(List&lt;String&gt; fileirasAssentosDBOX) {
+<span class="fc" id="L48">        this.fileirasAssentosDBOX = fileirasAssentosDBOX;</span>
+<span class="fc" id="L49">        return this;</span>
+    }
+
+    public Sala build() {
+<span class="fc" id="L53">        return new Sala(numero, tipoSala,quantidadeFileiras, quantidadeColunas, assentos, fileirasAssentosDBOX);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>

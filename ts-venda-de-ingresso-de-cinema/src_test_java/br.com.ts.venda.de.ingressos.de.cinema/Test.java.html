@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Test.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Test (21/12/2023 19:12:30)</a> &gt; <a href="../../index.html" class="el_group">ts-venda-de-ingresso-de-cinema</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">br.com.ts.venda.de.ingressos.de.cinema</a> &gt; <span class="el_source">Test.java</span></div><h1>Test.java</h1><pre class="source lang-java linenums">package br.com.ts.venda.de.ingressos.de.cinema;
+
+import br.com.ts.venda.de.ingressos.de.cinema.builder.*;
+import br.com.ts.venda.de.ingressos.de.cinema.entidades.Compra;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.ClassificacaoIndicativa;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoDia;
+import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+<span class="fc" id="L19">public class Test {</span>
+    @ParameterizedTest
+    @MethodSource(&quot;geraPedidoIngresso&quot;)
+    void testaPrecoIngresso(String CT, Compra compra, Float precoEsperado) {
+<span class="fc" id="L23">        exibirCompra(compra, CT);</span>
+
+<span class="fc" id="L25">        compra.comprarIngresso();</span>
+<span class="fc" id="L26">        assertEquals(compra.preco(), precoEsperado);</span>
+<span class="fc" id="L27">    }</span>
+
+    @ParameterizedTest
+    @MethodSource(&quot;geraPedidoComExcecao&quot;)
+    void testaExcecaoIngresso(String CT, Compra compra, String excecaoEsperada) {
+<span class="fc" id="L32">        exibirCompra(compra, CT);</span>
+
+<span class="pc" id="L34">        Exception excecao = assertThrows(Exception.class, () -&gt; compra.comprarIngresso());</span>
+<span class="fc" id="L35">        assertTrue(excecao.getMessage().contains(excecaoEsperada));</span>
+<span class="fc" id="L36">    }</span>
+
+    static Stream&lt;Arguments&gt; geraPedidoIngresso() {
+<span class="fc" id="L39">        return Stream.of(Arguments.of(&quot;CT (1) | Sala 3D, Segunda a Quarta, Inteira | Retorno Esperado: 34.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L40">                        .com_3d_Inteira_SegTerQuar(List.of())</span>
+<span class="fc" id="L41">                        .build(), (float) 34),</span>
+
+<span class="fc" id="L43">                Arguments.of(&quot;CT (2) | Sala 3D, Segunda a Quarta, Meia Entrada | Retorno Esperado: 17.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L44">                        .com_3d_MeiaEntrada_SegTerQuar(List.of())</span>
+<span class="fc" id="L45">                        .build(), (float) 17),</span>
+
+<span class="fc" id="L47">                Arguments.of(&quot;CT (3) | Sala 2D, Segunda a Quarta, Inteira | Retorno Esperado: 27.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L48">                        .com_2d_Inteira_SegTerQuar(List.of())</span>
+<span class="fc" id="L49">                        .build(), (float) 27),</span>
+
+<span class="fc" id="L51">                Arguments.of(&quot;CT (4) | Sala 2D, Segunda a Quarta, Meia Entrada | Retorno Esperado: 13.50&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L52">                        .com_2d_MeiaEntrada_SegTerQuar(List.of())</span>
+<span class="fc" id="L53">                        .build(), (float) 13.5),</span>
+
+<span class="fc" id="L55">                Arguments.of(&quot;CT (5) | Sala 2D, Segunda a Quarta, Inteira, Assento DBOX | Retorno Esperado: 41.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L56">                        .com_2d_Inteira_SegTerQuar(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L57">                        .build(), (float) 41),</span>
+
+<span class="fc" id="L59">                Arguments.of(&quot;CT (6) | Sala 2D, Segunda a Quarta, Meia Entrada, Assento DBOX | Retorno Esperado: 20.50&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L60">                        .com_2d_MeiaEntrada_SegTerQuar(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L61">                        .build(), (float) 20.5),</span>
+
+<span class="fc" id="L63">                Arguments.of(&quot;CT (7) | Sala 3D, Segunda a Quarta, Inteira, Assento DBOX | Retorno Esperado: 48.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L64">                        .com_3d_Inteira_SegTerQuar(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L65">                        .build(), (float) 48),</span>
+
+<span class="fc" id="L67">                Arguments.of(&quot;CT (8) | Sala 3D, Segunda a Quarta, Meia Entrada, Assento DBOX | Retorno Esperado: 24.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L68">                        .com_3d_MeiaEntrada_SegTerQuar(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L69">                        .build(), (float) 24),</span>
+
+<span class="fc" id="L71">                Arguments.of(&quot;CT (9) | Sala 3D, Quinta, Inteira | Retorno Esperado: 46.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L72">                        .com_3d_Inteira_Quinta(List.of())</span>
+<span class="fc" id="L73">                        .build(), (float) 46),</span>
+
+<span class="fc" id="L75">                Arguments.of(&quot;CT (10) | Sala 3D, Quinta, Meia Entrada | Retorno Esperado: 23.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L76">                        .com_3d_MeiaEntrada_Quinta(List.of())</span>
+<span class="fc" id="L77">                        .build(), (float) 23),</span>
+
+<span class="fc" id="L79">                Arguments.of(&quot;CT (11) | Sala 2D, Quinta, Inteira | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L80">                        .com_2d_Inteira_Quinta(List.of())</span>
+<span class="fc" id="L81">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L83">                Arguments.of(&quot;CT (12) | Sala 2D, Quinta, Meia Entrada | Retorno Esperado: 20.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L84">                        .com_2d_MeiaEntrada_Quinta(List.of())</span>
+<span class="fc" id="L85">                        .build(), (float) 20),</span>
+
+<span class="fc" id="L87">                Arguments.of(&quot;CT (13) | Sala 2D, Quinta, Inteira, Assento DBOX | Retorno Esperado: 60.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L88">                        .com_2d_Inteira_Quinta(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L89">                        .build(), (float) 60),</span>
+
+<span class="fc" id="L91">                Arguments.of(&quot;CT (14) | Sala 2D, Quinta, Meia Entrada, Assento DBOX | Retorno Esperado: 30.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L92">                        .com_2d_MeiaEntrada_Quinta(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L93">                        .build(), (float) 30),</span>
+
+<span class="fc" id="L95">                Arguments.of(&quot;CT (15) | Sala 3D, Quinta, Inteira, Assento DBOX | Retorno Esperado: 70.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L96">                        .com_3d_Inteira_Quinta(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L97">                        .build(), (float) 70),</span>
+
+<span class="fc" id="L99">                Arguments.of(&quot;CT (16) | Sala 3D, Quinta, Meia Entrada, Assento DBOX | Retorno Esperado: 35.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L100">                        .com_3d_MeiaEntrada_Quinta(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L101">                        .build(), (float) 35),</span>
+
+<span class="fc" id="L103">                Arguments.of(&quot;CT (34) | Sala 3D, Sexta a Domingo, Feriados e Pre-Estreias, Inteira | Retorno Esperado: 49.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L104">                        .com_3d_Inteira_FdsFeriado(List.of())</span>
+<span class="fc" id="L105">                        .build(), (float) 49),</span>
+
+<span class="fc" id="L107">                Arguments.of(&quot;CT (35) | Sala 3D, Sexta a Domingo, Feriados e Pre-Estreias, Meia Entrada | Retorno Esperado: 24.50&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L108">                        .com_3d_MeiaEntrada_FdsFeriado(List.of())</span>
+<span class="fc" id="L109">                        .build(), (float) 24.5),</span>
+
+<span class="fc" id="L111">                Arguments.of(&quot;CT (36) | Sala 2D, Sexta a Domingo, Feriados e Pre-Estreias, Inteira | Retorno Esperado: 42.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L112">                        .com_2d_Inteira_FdsFeriado(List.of())</span>
+<span class="fc" id="L113">                        .build(), (float) 42),</span>
+
+<span class="fc" id="L115">                Arguments.of(&quot;CT (37) | Sala 2D, Sexta a Domingo, Feriados e Pre-Estreias, Meia Entrada | Retorno Esperado: 21.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L116">                        .com_2d_MeiaEntrada_FdsFeriado(List.of())</span>
+<span class="fc" id="L117">                        .build(), (float) 21),</span>
+
+<span class="fc" id="L119">                Arguments.of(&quot;CT (38) | Sala 2D, Sexta a Domingo, Feriados e Pre-Estreias, Inteira, Assento DBOX | Retorno Esperado: 63.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L120">                        .com_2d_Inteira_FdsFeriado(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L121">                        .build(), (float) 63),</span>
+
+<span class="fc" id="L123">                Arguments.of(&quot;CT (39) | Sala 2D, Sexta a Domingo, Feriados e Pre-Estreias, Meia Entrada, Assento DBOX | Retorno Esperado: 31.50&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L124">                        .com_2d_MeiaEntrada_FdsFeriado(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L125">                        .build(), (float) 31.5),</span>
+
+<span class="fc" id="L127">                Arguments.of(&quot;CT (40) | Sala 3D, Sexta a Domingo, Feriados e Pre-Estreias, Inteira, Assento DBOX | Retorno Esperado: 74.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L128">                        .com_3d_Inteira_FdsFeriado(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L129">                        .build(), (float) 74),</span>
+
+<span class="fc" id="L131">                Arguments.of(&quot;CT (41) | Sala 3D, Sexta a Domingo, Feriados e Pre-Estreias, Meia Entrada, Assento DBOX | Retorno Esperado: 37.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L132">                        .com_3d_MeiaEntrada_FdsFeriado(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L133">                        .build(), (float) 37),</span>
+
+<span class="fc" id="L135">                Arguments.of(&quot;CT Adicional I | #Para Garantir 100% De cobertura Em Compra# | Sala 3D, Domingo, Inteira | Retorno Esperado: 49.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L136">                        .com_TipoSala_E_Dia_Especificos(TipoSala._3D, TipoDia.DOMINGO, List.of())</span>
+<span class="fc" id="L137">                        .build(), (float) 49),</span>
+
+<span class="fc" id="L139">                Arguments.of(&quot;CT Adicional II | #Para Garantir 100% De cobertura Em Compra# | Sala 2D, Emenda, Inteira | Retorno Esperado: 100.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L140">                        .com_TipoSala_E_Dia_Especificos(TipoSala._2D, TipoDia.EMENDA, List.of())</span>
+<span class="fc" id="L141">                        .build(), (float) 100),</span>
+
+<span class="fc" id="L143">                Arguments.of(&quot;CT (20) | Analise do Valor limite | Idade:10, Classificacao:10 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L144">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L145">                                        (2013, 10, 25),</span>
+<span class="fc" id="L146">                                ClassificacaoIndicativa.DEZMAIS, List.of())</span>
+<span class="fc" id="L147">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L149">                Arguments.of(&quot;CT (21) | Analise do Valor limite | Idade:11, Classificacao:10 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L150">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L151">                                        (2012, 10, 25),</span>
+<span class="fc" id="L152">                                ClassificacaoIndicativa.DEZMAIS, List.of())</span>
+<span class="fc" id="L153">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L155">                Arguments.of(&quot;CT (23) | Analise do Valor limite | Idade:12, Classificacao:12 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L156">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L157">                                        (2011, 10, 25),</span>
+<span class="fc" id="L158">                                ClassificacaoIndicativa.DOZEMAIS, List.of())</span>
+<span class="fc" id="L159">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L161">                Arguments.of(&quot;CT (24) | Analise do Valor limite | Idade:13, Classificacao:12 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L162">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L163">                                        (2010, 10, 25),</span>
+<span class="fc" id="L164">                                ClassificacaoIndicativa.DOZEMAIS, List.of())</span>
+<span class="fc" id="L165">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L167">                Arguments.of(&quot;CT (26) | Analise do Valor limite | Idade:14, Classificacao:14 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L168">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L169">                                        (2009, 10, 25),</span>
+<span class="fc" id="L170">                                ClassificacaoIndicativa.QUATORZEMAIS, List.of())</span>
+<span class="fc" id="L171">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L173">                Arguments.of(&quot;CT (27) | Analise do Valor limite | Idade:15, Classificacao:14 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L174">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L175">                                        (2008, 10, 25),</span>
+<span class="fc" id="L176">                                ClassificacaoIndicativa.QUATORZEMAIS, List.of())</span>
+<span class="fc" id="L177">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L179">                Arguments.of(&quot;CT (29) | Analise do Valor limite | Idade:16, Classificacao:16 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L180">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L181">                                        (2007, 10, 25),</span>
+<span class="fc" id="L182">                                ClassificacaoIndicativa.DEZESSEISMAIS, List.of())</span>
+<span class="fc" id="L183">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L185">                Arguments.of(&quot;CT (30) | Analise do Valor limite | Idade:17, Classificacao:16 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L186">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L187">                                        (2006, 10, 25),</span>
+<span class="fc" id="L188">                                ClassificacaoIndicativa.DEZESSEISMAIS, List.of())</span>
+<span class="fc" id="L189">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L191">                Arguments.of(&quot;CT (32) | Analise do Valor limite | Idade:18, Classificacao:18 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L192">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L193">                                        (2005, 10, 25),</span>
+<span class="fc" id="L194">                                ClassificacaoIndicativa.DEZOITOMAIS, List.of())</span>
+<span class="fc" id="L195">                        .build(), (float) 40),</span>
+
+<span class="fc" id="L197">                Arguments.of(&quot;CT (33) | Analise do Valor limite | Idade:19, Classificacao:18 | Retorno Esperado: 40.00&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L198">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L199">                                        (2004, 10, 25),</span>
+<span class="fc" id="L200">                                ClassificacaoIndicativa.DEZOITOMAIS, List.of())</span>
+<span class="fc" id="L201">                        .build(), (float) 40)</span>
+        );
+    }
+
+    public static Stream&lt;Arguments&gt; geraPedidoComExcecao() {
+<span class="fc" id="L206">        return Stream.of(Arguments.of(&quot;CT (17) | Assento Escolhido Esta Ocupado | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L207">                        .com_3d_Inteira_FdsFeriado(List.of())</span>
+<span class="fc" id="L208">                        .comCodigoAssento(&quot;A4&quot;)</span>
+<span class="fc" id="L209">                        .build(), &quot;Assento não está disponível&quot;),</span>
+
+<span class="fc" id="L211">                Arguments.of(&quot;CT (18) | Assento Escolhido Esta Ocupado, Assento DBOX | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L212">                        .com_3d_Inteira_FdsFeriado(List.of(&quot;A&quot;))</span>
+<span class="fc" id="L213">                        .comCodigoAssento(&quot;A4&quot;)</span>
+<span class="fc" id="L214">                        .build(), &quot;Assento não está disponível&quot;),</span>
+
+<span class="fc" id="L216">                Arguments.of(&quot;CT (19) | Analise do Valor limite | Idade:9, Classificacao:10 | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L217">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L218">                                        (2014, 12, 25),</span>
+<span class="fc" id="L219">                                ClassificacaoIndicativa.DEZMAIS, List.of())</span>
+<span class="fc" id="L220">                        .build(), &quot;Idade menor que o esperado. Verifique a classificação indicativa!&quot;),</span>
+
+<span class="fc" id="L222">                Arguments.of(&quot;CT (22) | Analise do Valor limite | Idade:11, Classificacao:12 | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L223">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L224">                                        (2012, 10, 25),</span>
+<span class="fc" id="L225">                                ClassificacaoIndicativa.DOZEMAIS, List.of())</span>
+<span class="fc" id="L226">                        .build(), &quot;Idade menor que o esperado. Verifique a classificação indicativa!&quot;),</span>
+
+<span class="fc" id="L228">                Arguments.of(&quot;CT (25) | Analise do Valor limite | Idade:13, Classificacao:14 | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L229">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L230">                                        (2010, 10, 25),</span>
+<span class="fc" id="L231">                                ClassificacaoIndicativa.QUATORZEMAIS, List.of())</span>
+<span class="fc" id="L232">                        .build(), &quot;Idade menor que o esperado. Verifique a classificação indicativa!&quot;),</span>
+
+<span class="fc" id="L234">                Arguments.of(&quot;CT (28) | Analise do Valor limite | Idade:15, Classificacao:16 | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L235">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L236">                                        (2008, 10, 25),</span>
+<span class="fc" id="L237">                                ClassificacaoIndicativa.DEZESSEISMAIS, List.of())</span>
+<span class="fc" id="L238">                        .build(), &quot;Idade menor que o esperado. Verifique a classificação indicativa!&quot;),</span>
+
+<span class="fc" id="L240">                Arguments.of(&quot;CT (31) | Analise do Valor limite | Idade:17, Classificacao:18 | Retorno Esperado: Erro&quot;, CompraBuilder.umaCompra()</span>
+<span class="fc" id="L241">                        .com_Idade_E_Classificacao_Especificos(LocalDate.of</span>
+<span class="fc" id="L242">                                        (2006, 10, 25),</span>
+<span class="fc" id="L243">                                ClassificacaoIndicativa.DEZOITOMAIS, List.of())</span>
+<span class="fc" id="L244">                        .build(), &quot;Idade menor que o esperado. Verifique a classificação indicativa!&quot;)</span>
+        );
+    }
+
+    public void exibirCompra(Compra compra, String CT){
+<span class="fc" id="L249">        System.out.println(&quot;==================================================================================================================================&quot;);</span>
+<span class="fc" id="L250">        System.out.println(&quot;\t&quot; + CT);</span>
+<span class="fc" id="L251">        System.out.println(&quot;==================================================================================================================================&quot;);</span>
+
+<span class="fc" id="L253">        System.out.println(parametrosDeTesteDaCompra(compra));</span>
+<span class="fc" id="L254">    }</span>
+
+    public String parametrosDeTesteDaCompra(Compra compra){
+<span class="fc bfc" id="L257" title="All 2 branches covered.">        String assentoEhDBOX = compra.sessao().sala().assentoEhDBOX(compra.codigoAssento())? &quot;SIM&quot;: &quot;NÂO&quot;;</span>
+
+<span class="fc" id="L259">        return &quot;Compra:\n&quot; +</span>
+                &quot;-----------------------------------------------------------------\n&quot; +
+<span class="fc" id="L261">                &quot;Tipo do Dia: &quot; + compra.sessao().tipoDia().name() + &quot;\n&quot; +</span>
+<span class="fc" id="L262">                &quot;Data/Horário: &quot; + compra.sessao().data() + &quot; / &quot; + compra.sessao().horario() + &quot;\n&quot; +</span>
+<span class="fc" id="L263">                &quot;Tipo de Sala: &quot; + compra.sessao().sala().tipoSala().name() + &quot;\n&quot; +</span>
+<span class="fc" id="L264">                &quot;Assento é DBOX? &quot; + assentoEhDBOX + &quot;\n&quot; +</span>
+<span class="fc" id="L265">                &quot;Classificação Indicativa: &quot; + compra.sessao().filme().faixaEtaria() + &quot;\n&quot; +</span>
+<span class="fc" id="L266">                &quot;Idade do Cliente: &quot; + compra.cliente().calcularIdade() + &quot;\n&quot; +</span>
+                &quot;-----------------------------------------------------------------\n&quot;;
+    }
+
+    public void exibirCompraToString(Compra compra){
+<span class="nc" id="L271">        System.out.println(compra.toString());</span>
+<span class="nc" id="L272">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Test (21/12/2023 19:12:30)</div></body></html>
