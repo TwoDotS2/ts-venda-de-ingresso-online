@@ -247,9 +247,9 @@ public class Test {
     }
 
     public void exibirCompra(Compra compra, String CT){
-        System.out.println("=================================================================");
+        System.out.println("==================================================================================================================================");
         System.out.println("\t" + CT);
-        System.out.println("=================================================================");
+        System.out.println("==================================================================================================================================");
 
         System.out.println(parametrosDeTesteDaCompra(compra));
     }
@@ -265,7 +265,10 @@ public class Test {
                 "Assento é DBOX? " + assentoEhDBOX + "\n" +
                 "Classificação Indicativa: " + compra.sessao().filme().faixaEtaria() + "\n" +
                 "Idade do Cliente: " + compra.cliente().calcularIdade() + "\n" +
-                "-----------------------------------------------------------------\n" +
-                "\n\nExtras:\n\n" + compra.toString();
+                "-----------------------------------------------------------------\n";
+    }
+
+    public void exibirCompraToString(Compra compra){
+        System.out.println(compra.toString());
     }
 }
