@@ -3,22 +3,26 @@ package br.com.ts.venda.de.ingressos.de.cinema.builder;
 import br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala;
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.ts.venda.de.ingressos.de.cinema.entidades.Sala.gerarAssentos;
+
 public class SalaBuilder {
-    private Integer numeroSala;
-    private TipoSala tipoSala;
-    private Integer quantidadeFileiras;
-    private Integer quantidadeColunas;
-    private List<String> assentos;
-    private List<Integer> assentosDBOX;
+
+    private Integer numero = 1;
+    private TipoSala tipoSala = TipoSala._2D;
+    private Integer quantidadeFileiras = 20;
+    private Integer quantidadeColunas = 10;
+    private List<String> assentos = gerarAssentos(quantidadeFileiras, quantidadeColunas);
+    private List<String> fileirasAssentosDBOX = new ArrayList<>();
 
     public static SalaBuilder umaSala() {
         return new SalaBuilder();
     }
 
-    public SalaBuilder comNumeroSala(Integer numeroSala) {
-        this.numeroSala = numeroSala;
+    public SalaBuilder comNumero(Integer numero) {
+        this.numero = numero;
         return this;
     }
 
@@ -27,52 +31,26 @@ public class SalaBuilder {
         return this;
     }
 
-    public SalaBuilder comQuantidadeFileiras(Integer quantidadeFileiras) {
-        this.quantidadeFileiras = quantidadeFileiras;
+    public SalaBuilder com3d() {
+        this.tipoSala = TipoSala._3D;
         return this;
     }
 
-    public SalaBuilder comQuantidadeColunas(Integer quantidadeColunas) {
-        this.quantidadeColunas = quantidadeColunas;
+    public SalaBuilder comSalaEspecifica(Integer rows, Integer columns){
+        this.quantidadeFileiras = rows;
+        this.quantidadeColunas = columns;
+        gerarAssentos(quantidadeFileiras, quantidadeColunas);
         return this;
     }
 
-    public SalaBuilder comAssentos(List<String> assentos) {
-        this.assentos = assentos;
-        return this;
-    }
 
-    public SalaBuilder comAssentosDBOX(List<Integer> assentosDBOX) {
-        this.assentosDBOX = assentosDBOX;
+    public SalaBuilder comFileirasAssentosDBOX(List<String> fileirasAssentosDBOX) {
+        this.fileirasAssentosDBOX = fileirasAssentosDBOX;
         return this;
     }
 
     public Sala build() {
-    return new Sala(numeroSala, tipoSala, quantidadeFileiras, quantidadeColunas,
-            assentos, assentosDBOX);
+        return new Sala(numero, tipoSala,quantidadeFileiras, quantidadeColunas, assentos, fileirasAssentosDBOX);
     }
 
-    public Integer numeroSala() {
-        return numeroSala;
-    }
-
-    public TipoSala tipoSala() {
-        return tipoSala;
-    }
-
-    public Integer quantidadeFileiras() {
-        return quantidadeFileiras;
-    }
-
-    public Integer quantidadeColunas() {
-        return quantidadeColunas;
-    }
-
-    public List<String> assentos() {
-        return assentos;
-    }
-
-    public List<Integer> assentosDBOX() {
-        return assentosDBOX;
-    }
 }

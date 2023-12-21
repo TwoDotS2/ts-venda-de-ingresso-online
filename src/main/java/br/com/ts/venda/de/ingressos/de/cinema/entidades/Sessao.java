@@ -23,51 +23,39 @@ public class Sessao {
         this.assentosOcupados = assentosOcupados;
     }
 
-    public LocalTime getHorario() {
+    public Boolean assentoEstaDisponivel(String assento){
+        return !assentosOcupados.containsKey(assento);
+    }
+
+    public LocalTime horario() {
         return horario;
     }
 
-    public void setHorario(LocalTime horario) {
-        this.horario = horario;
-    }
-
-    public LocalDate getData() {
+    public LocalDate data() {
         return data;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public Sala getSala() {
+    public Sala sala() {
         return sala;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
-
-    public Filme getFilme() {
+    public Filme filme() {
         return filme;
     }
 
-    public void setFilme(Filme filme) {
-        this.filme = filme;
-    }
-
-    public TipoDia getTipoDia() {
+    public TipoDia tipoDia() {
         return tipoDia;
     }
 
-    public void setTipoDia(TipoDia tipoDia) {
-        this.tipoDia = tipoDia;
-    }
-
-    public Map<String, Cliente> getAssentosOcupados() {
-        return assentosOcupados;
-    }
-
-    public void setAssentosOcupados(Map<String, Cliente> assentosOcupados) {
-        this.assentosOcupados = assentosOcupados;
+    @Override
+    public String toString() {
+        return "\n\t Sessao{" +
+                "\n\t\t horario=" + horario +
+                "\n\t\t data=" + data +
+                "\n\t\t sala=" + sala.toString() +
+                "\n\t\t filme=" + filme.toString() +
+                "\n\t\t tipoDia=" + tipoDia.name() +
+                "\n\t\t assentosOcupados=" + assentosOcupados.toString() +
+                "\n\t }";
     }
 }

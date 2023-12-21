@@ -2,6 +2,7 @@ package br.com.ts.venda.de.ingressos.de.cinema.entidades;
 
 import br.com.ts.venda.de.ingressos.de.cinema.enums.TipoSala;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sala {
@@ -10,64 +11,61 @@ public class Sala {
     private Integer quantidadeFileiras;
     private Integer quantidadeColunas;
     private List<String> assentos;
-    private List<Integer> assentosDBOX;
+
+    private List<String> fileirasAssentosDBOX;
+
+    public Sala(){}
 
     public Sala(Integer numero, TipoSala tipoSala, Integer quantidadeFileiras, Integer quantidadeColunas,
-                List<String> assentos, List<Integer> assentosDBOX) {
+                List<String> assentos, List<String> fileirasAssentosDBOX) {
+      
         this.numero = numero;
         this.tipoSala = tipoSala;
         this.quantidadeFileiras = quantidadeFileiras;
         this.quantidadeColunas = quantidadeColunas;
         this.assentos = assentos;
-        this.assentosDBOX = assentosDBOX;
+        this.fileirasAssentosDBOX = fileirasAssentosDBOX;
     }
 
-    public Integer getNumero() {
-        return numero;
-    }
+    public static List<String> gerarAssentos(Integer quantidadeFileiras, Integer quantidadeColunas){
+        List<String> assentos = new ArrayList<>();
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
+        for (char fileira = 'A'; fileira <= 'A' + quantidadeFileiras-1; fileira++) {
+            for (int coluna = 1; coluna <= quantidadeColunas; coluna++) {
 
-    public TipoSala getTipoSala() {
-        return tipoSala;
-    }
+                String assento = fileira + Integer.toString(coluna);
 
-    public void setTipoSala(TipoSala tipoSala) {
-        this.tipoSala = tipoSala;
-    }
+                assentos.add(assento);
+            }
+        }
 
-    public Integer getQuantidadeFileiras() {
-        return quantidadeFileiras;
-    }
-
-    public void setQuantidadeFileiras(Integer quantidadeFileiras) {
-        this.quantidadeFileiras = quantidadeFileiras;
-    }
-
-    public Integer getQuantidadeColunas() {
-        return quantidadeColunas;
-    }
-
-    public void setQuantidadeColunas(Integer quantidadeColunas) {
-        this.quantidadeColunas = quantidadeColunas;
-    }
-
-    public List<String> getAssentos() {
         return assentos;
     }
 
-    public void setAssentos(List<String> assentos) {
-        this.assentos = assentos;
+    public Boolean assentoEhDBOX(String assento){
+        String fileira = assento.charAt(0) + "";
+        return fileirasAssentosDBOX.contains(fileira);
     }
 
-    public List<Integer> getAssentosDBOX() {
-        return assentosDBOX;
+    public Integer numero() {
+        return numero;
     }
 
-    public void setAssentosDBOX(List<Integer> assentosDBOX) {
-        this.assentosDBOX = assentosDBOX;
+    public TipoSala tipoSala() {
+        return tipoSala;
     }
 
+
+    @Override
+    public String toString() {
+        return "\n\t Sala{" +
+                "\n\t\t numero=" + numero +
+                "\n\t\t tipoSala=" + tipoSala.name() +
+                "\n\t\t quantidadeFileiras=" + quantidadeFileiras +
+                "\n\t\t quantidadeColunas=" + quantidadeColunas +
+                "\n\t\t assentos=" + assentos +
+                "\n\t\t fileirasAssentosDBOX=" + fileirasAssentosDBOX.toString() +
+                "\n\t }";
+
+  }
 }

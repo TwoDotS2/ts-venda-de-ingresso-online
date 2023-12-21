@@ -6,16 +6,20 @@ import br.com.ts.venda.de.ingressos.de.cinema.enums.CategoriaCliente;
 import java.time.LocalDate;
 
 public class ClienteBuilder {
-    private CategoriaCliente categoria;
-    private LocalDate dataNascimento;
-    private String nomeCompleto;
-    private String CPF;
-    private String endereco;
+    private CategoriaCliente categoria = CategoriaCliente.VISITANTE;
+    private LocalDate dataNascimento = LocalDate.of(2000, 2, 2);
+    private String nomeCompleto = "Fulano da Silva";
+    private String CPF = "00000000000";
+    private String endereco = "Avenida Salgado Filho";
 
     public static ClienteBuilder umCliente(){ return new ClienteBuilder(); }
 
     public ClienteBuilder comCategoria(CategoriaCliente categoria){
         this.categoria = categoria;
+        return this;
+    }
+    public ClienteBuilder comEstudante(){
+        this.categoria = CategoriaCliente.ESTUDANTE;
         return this;
     }
 
@@ -42,25 +46,5 @@ public class ClienteBuilder {
 
     public Cliente build() {
         return new Cliente(categoria, dataNascimento, nomeCompleto, CPF, endereco);
-    }
-
-    public CategoriaCliente categoria() {
-        return categoria;
-    }
-
-    public LocalDate dataNascimento() {
-        return dataNascimento;
-    }
-
-    public String nomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public String CPF() {
-        return CPF;
-    }
-
-    public String endereco() {
-        return endereco;
     }
 }
